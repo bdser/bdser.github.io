@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="bdstravel" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="编译php7">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos6.6 编译安装php7和php扩展">
+<meta property="og:url" content="http://blog.budongshu.cn/2018/04/21/Centos6.6 编译安装php7和php扩展/index.html">
+<meta property="og:site_name" content="bdstravel">
+<meta property="og:description" content="编译php7">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-27T04:06:57.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos6.6 编译安装php7和php扩展">
+<meta name="twitter:description" content="编译php7">
+  <link rel="canonical" href="http://blog.budongshu.cn/2018/04/21/Centos6.6 编译安装php7和php扩展/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Centos6.6 编译安装php7和php扩展 | bdstravel</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bdstravel</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个专注技术的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bdstravel/bdstravel.github.io" class="github-corner" title="bdstravel GitHub" aria-label="bdstravel GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://blog.budongshu.cn/2018/04/21/Centos6.6 编译安装php7和php扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="步东舒">
+      <meta itemprop="description" content="Learning Linux Python Go 等知识点">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bdstravel">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Centos6.6 编译安装php7和php扩展
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-21 20:26:00" itemprop="dateCreated datePublished" datetime="2018-04-21T20:26:00+08:00">2018-04-21</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-27 12:06:57" itemprop="dateModified" datetime="2019-09-27T12:06:57+08:00">2019-09-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="编译php7"><a href="#编译php7" class="headerlink" title="编译php7"></a>编译php7</h2><a id="more"></a>
+<h3 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS release 6.6 (Final)</span><br><span class="line">kernal 2.6.32-504.23.4.el6.x86_64</span><br></pre></td></tr></table></figure>
+<h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><p>yum install -y  curl libcurl-devel libjpeg-devel libpng-devel libjped-devel freetype-devel libxslt-devel boost-devel gperf libevent-devel libuuid-devel libgearman  libgearman-devel</p>
+<h3 id="install-php"><a href="#install-php" class="headerlink" title="install php"></a>install php</h3><p>下载目录: <code>/opt/</code><br>安装目录: <code>/Data/apps/php/</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">wget http://docs.php.net/distributions/php-7.0.28.tar.gz</span><br><span class="line">tar xf php-7.0.28.tar.gz</span><br><span class="line">cd php-7.0.28</span><br><span class="line">./configure --with-libdir=lib64 --prefix=/Data/apps/php --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-zlib --with-png-dir --with-jpeg-dir --with-iconv --with-curl --with-mcrypt --with-openssl --with-xsl --enable-opcache --enable-inline-optimization --enable-fpm --enable-mbstring --enable-pcntl --enable-soap --enable-sockets --enable-bcmath --with-libxml --with-freetype-dir=/usr/include/freetype2/ --disable-phar</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="php-扩展"><a href="#php-扩展" class="headerlink" title="php 扩展"></a>php 扩展</h3><blockquote>
+<p>下面所有php扩展包的下载目录统一为: <code>/opt/soft/</code></p>
+</blockquote>
+<h4 id="opcache"><a href="#opcache" class="headerlink" title="opcache"></a>opcache</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/php-7.0.28/ext </span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="xdebug"><a href="#xdebug" class="headerlink" title="xdebug"></a>xdebug</h4><p><code>从2.4开始支持php7</code></p>
+<p>下载地址: <a href="https://xdebug.org/files/" target="_blank" rel="noopener">https://xdebug.org/files/</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://xdebug.org/files/xdebug-2.6.0.tgz</span><br><span class="line">tar xf xdebug-2.6.0.tgz</span><br><span class="line">cd xdebug-2.6.0</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h4 id="igbinary"><a href="#igbinary" class="headerlink" title="igbinary"></a>igbinary</h4><p><code>最新版本(2.0.5),2.0.1开始支持7.0</code></p>
+<p>详情连接: <a href="http://pecl.php.net/package-changelog.php?package=igbinary" target="_blank" rel="noopener">http://pecl.php.net/package-changelog.php?package=igbinary</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://pecl.php.net/get/igbinary-2.0.5.tgz</span><br><span class="line">tar xf igbinary-2.0.5.tgz</span><br><span class="line">cd igbinary-2.0.5</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h4 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">memcached版本要求：</span><br><span class="line">	php-memcached 3.x</span><br><span class="line">	Supports PHP 7.0 - 7.2.</span><br><span class="line">	Requires libmemcached 1.x or higher.</span><br><span class="line">	Optionally supports igbinary 2.0 or higher.</span><br><span class="line">	Optionally supports msgpack 2.0 or higher.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">安装libmemcached 依赖包</span><br><span class="line">wget https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gzc</span><br><span class="line">tar -zxf libmemcached-1.0.18.tar.gz</span><br><span class="line">./configure --prefix=/Data/apps/libmemcached --with-memcached</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://pecl.php.net/get/memcached-3.0.0.tgz</span><br><span class="line">tar xf memcached-3.0.0.tgz</span><br><span class="line">cd /opt/soft/memcached-3.0.0</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config --with-libmemcached-dir=/Data/apps/libmemcached --enable-memcached --enable-memcached-igbinary </span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>遇到这样的报错<br><code>configure: error: no, sasl.h is not available. Run configure with --disable-memcached-sasl to disable this check</code><br>根据提示加上参数重新编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config --with-libmemcached-dir=/Data/apps/libmemcached --enable-memcached --enable-memcached-igbinary  --disable-memcached-sasl </span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="imagick"><a href="#imagick" class="headerlink" title="imagick"></a>imagick</h4><p>下载地址：<code>https://pecl.php.net/package/imagick</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">安装ImageMagick(ImageMagick-7.0.7-28)</span><br><span class="line">wget ftp://mirror.checkdomain.de/imagemagick/ImageMagick-7.0.7-28.tar.gz</span><br><span class="line">tar xf ImageMagick-7.0.7-28.tar.gz</span><br><span class="line">cd ImageMagick-7.0.7-28</span><br><span class="line">./configure --prefix=/Data/apps/ImageMagick</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">编译imagick</span><br><span class="line">wget http://pecl.php.net/get/imagick-3.4.3.tgz</span><br><span class="line">tar xf imagick-3.4.3.tgz</span><br><span class="line">cd imagick-3.4.3</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-imagick=/Data/apps/ImageMagick --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h4><p>下载地址: <code>https://github.com/phpredis/phpredis  (develop版本)</code> </p>
+<p>安装redis目录: <code>/Data/app/redis</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">编译redis扩展</span><br><span class="line">wget https://pecl.php.net/get/redis-3.0.0.tgz</span><br><span class="line">cd redis-3.0.0</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --enable-redis-igbinary=/Data/apps/redis/bin/ --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="gearman"><a href="#gearman" class="headerlink" title="gearman"></a>gearman</h4><p>安装gearmand服务端 <a href="https://launchpad.net/gearmand" target="_blank" rel="noopener">https://launchpad.net/gearmand</a> 版本：1.1.12</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">编译gearman客服端扩展</span><br><span class="line">git下载最新：https://github.com/wcgallego/pecl-gearman/tree/master</span><br><span class="line">cd pecl-gearman-master</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure  --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="scws"><a href="#scws" class="headerlink" title="scws"></a>scws</h4><p>下载链接：<a href="http://www.xunsearch.com/scws/download.php" target="_blank" rel="noopener">http://www.xunsearch.com/scws/download.php</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2</span><br><span class="line">cd scws-1.2.3/phpext</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-scws=/Data/apps/scws --with-php-config=/Data/apps/php/bin/php-config</span><br></pre></td></tr></table></figure>
+<h4 id="amqp"><a href="#amqp" class="headerlink" title="amqp"></a>amqp</h4><p>下载地址: <a href="http://pecl.php.net/package/amqp" target="_blank" rel="noopener">http://pecl.php.net/package/amqp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">安装rabbitmq-c依赖库</span><br><span class="line">wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz</span><br><span class="line">cd rabbitmq-c-0.8.0</span><br><span class="line">./configure --prefix=/usr/local/rabbitmq-c-0.8.0</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">编译amqp扩展</span><br><span class="line">wget https://pecl.php.net/get/amqp-1.9.3.tgz</span><br><span class="line">tar -xf amqp-1.9.3.tar</span><br><span class="line">cd amqp-1.9.3</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c-0.8.0</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="fastdfs-client"><a href="#fastdfs-client" class="headerlink" title="fastdfs client"></a>fastdfs client</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/happyfish100/fastdfs/archive/master.zip</span><br><span class="line">unzip master.zip</span><br><span class="line">cd fastdfs-master/php_client</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/Data/apps/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="libiconv"><a href="#libiconv" class="headerlink" title="libiconv"></a>libiconv</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">安装libiconv</span><br><span class="line">wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz</span><br><span class="line">tar xf libiconv-1.14.tar.gz</span><br><span class="line">cd libiconv-1.14</span><br><span class="line">./configure </span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">安装libdatrie</span><br><span class="line">解压，进入目录</span><br><span class="line">./configure LDFLAGS=-L/usr/local/lib LIBS=-liconv --host=arm</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">安装trie_filter.so 拓展</span><br><span class="line">git clonde https://github.com/zzjin/php-ext-trie-filter</span><br><span class="line">cd  php-ext-trie-filter</span><br><span class="line">/Data/apps/php/bin/phpize</span><br><span class="line">./configure  --with-php-config=/Data/apps/php/bin/php-config  --with-trie_filter=/usr/local/libdatrie</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="php-ini-配置"><a href="#php-ini-配置" class="headerlink" title="php.ini 配置"></a>php.ini 配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/soft/php-7.0.28</span><br><span class="line">cp php.ini-production /Data/apps/php/lib/php.ini</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">加载的模块配置</span><br><span class="line">[opcache]</span><br><span class="line">zend_extension=&quot;/Data/apps/php/lib/php/extensions/no-debug-non-zts-20151012/opcache.so&quot;</span><br><span class="line">opcache.memory_consumption=128</span><br><span class="line">opcache.interned_strings_buffer=8</span><br><span class="line">opcache.max_accelerated_files=4000</span><br><span class="line">opcache.fast_shutdown=1</span><br><span class="line">opcache.enable_cli=1</span><br><span class="line">opcache.validate_timestamps=1</span><br><span class="line">opcache.revalidate_freq=1</span><br><span class="line">opcache.error_log=&quot;/Data/apps/php/var/log/opcache.log&quot;</span><br><span class="line">[memcached]</span><br><span class="line">extension=memcached.so</span><br><span class="line">memcache.hash_strategy=consistent</span><br><span class="line">memcache.hash_function=crc32</span><br><span class="line">session.save_handler = memcached</span><br><span class="line">extension=igbinary.so</span><br><span class="line">extension=imagick.so</span><br><span class="line">extension=redis.so</span><br><span class="line">extension=gearman.so</span><br><span class="line">extension=trie_filter.so</span><br><span class="line">[scws]</span><br><span class="line">extension=scws.so</span><br><span class="line">scws.default.charset = utf8</span><br><span class="line">scws.default.fpath = /Data/apps/scws/etc</span><br><span class="line">[amqp]</span><br><span class="line">extension=amqp.so</span><br><span class="line">[fastdfs]</span><br><span class="line">extension = fastdfs_client.so</span><br><span class="line">fastdfs_client.base_path = /tmp</span><br><span class="line">fastdfs_client.connect_timeout = 2</span><br><span class="line">fastdfs_client.network_timeout = 60</span><br><span class="line">fastdfs_client.log_level = info</span><br><span class="line">fastdfs_client.http.anti_steal_secret_key =</span><br><span class="line">fastdfs_client.tracker_group_count = 1</span><br><span class="line">fastdfs_client.tracker_group0 = /etc/fdfs/client.conf</span><br><span class="line">fastdfs_client.use_connection_pool = false</span><br><span class="line">fastdfs_client.connection_pool_max_idle_time = 3600</span><br></pre></td></tr></table></figure>
+<h3 id="php-fpm-conf"><a href="#php-fpm-conf" class="headerlink" title="php-fpm.conf"></a>php-fpm.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /Data/apps/php/etc/php-fpm.conf.default /Data/apps/php/etc/php-fpm</span><br></pre></td></tr></table></figure>
+<h3 id="php-fpm-启动脚本"><a href="#php-fpm-启动脚本" class="headerlink" title="php-fpm 启动脚本"></a>php-fpm 启动脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/soft/php-7.0.28/sapi/fpm</span><br><span class="line">cp init.d.php-fpm /etc/init.d/php-fpm</span><br><span class="line">chmod +x /etc/init.d/php-fpm</span><br></pre></td></tr></table></figure>
+<h3 id="启动php"><a href="#启动php" class="headerlink" title="启动php"></a>启动php</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/php-fpm start</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/php/" rel="tag"># php</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/04/20/kafka_cluster/" rel="next" title="kafka_cluster">
+                  <i class="fa fa-chevron-left"></i> kafka_cluster
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/04/24/docker 容器简介/" rel="prev" title="docker 入门简介">
+                  docker 入门简介 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译php7"><span class="nav-number">1.</span> <span class="nav-text">编译php7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器环境"><span class="nav-number">1.1.</span> <span class="nav-text">机器环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yum"><span class="nav-number">1.2.</span> <span class="nav-text">yum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#install-php"><span class="nav-number">1.3.</span> <span class="nav-text">install php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-扩展"><span class="nav-number">1.4.</span> <span class="nav-text">php 扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#opcache"><span class="nav-number">1.4.1.</span> <span class="nav-text">opcache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xdebug"><span class="nav-number">1.4.2.</span> <span class="nav-text">xdebug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#igbinary"><span class="nav-number">1.4.3.</span> <span class="nav-text">igbinary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#memcached"><span class="nav-number">1.4.4.</span> <span class="nav-text">memcached</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#imagick"><span class="nav-number">1.4.5.</span> <span class="nav-text">imagick</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redis"><span class="nav-number">1.4.6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gearman"><span class="nav-number">1.4.7.</span> <span class="nav-text">gearman</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scws"><span class="nav-number">1.4.8.</span> <span class="nav-text">scws</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#amqp"><span class="nav-number">1.4.9.</span> <span class="nav-text">amqp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fastdfs-client"><span class="nav-number">1.4.10.</span> <span class="nav-text">fastdfs client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#libiconv"><span class="nav-number">1.4.11.</span> <span class="nav-text">libiconv</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-ini-配置"><span class="nav-number">1.5.</span> <span class="nav-text">php.ini 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-fpm-conf"><span class="nav-number">1.6.</span> <span class="nav-text">php-fpm.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-fpm-启动脚本"><span class="nav-number">1.7.</span> <span class="nav-text">php-fpm 启动脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动php"><span class="nav-number">1.8.</span> <span class="nav-text">启动php</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="步东舒">
+  <p class="site-author-name" itemprop="name">步东舒</p>
+  <div class="site-description" itemprop="description">Learning Linux Python Go 等知识点</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">步东舒</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>

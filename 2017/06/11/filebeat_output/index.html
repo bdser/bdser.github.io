@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="bdstravel" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Filbeat OutPut">
+<meta name="keywords" content="filebeat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="filebeat Output">
+<meta property="og:url" content="http://blog.budongshu.cn/2017/06/11/filebeat_output/index.html">
+<meta property="og:site_name" content="bdstravel">
+<meta property="og:description" content="Filbeat OutPut">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-27T04:06:57.965Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="filebeat Output">
+<meta name="twitter:description" content="Filbeat OutPut">
+  <link rel="canonical" href="http://blog.budongshu.cn/2017/06/11/filebeat_output/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>filebeat Output | bdstravel</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bdstravel</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个专注技术的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bdstravel/bdstravel.github.io" class="github-corner" title="bdstravel GitHub" aria-label="bdstravel GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://blog.budongshu.cn/2017/06/11/filebeat_output/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="步东舒">
+      <meta itemprop="description" content="Learning Linux Python Go 等知识点">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bdstravel">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">filebeat Output
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-11 05:22:31" itemprop="dateCreated datePublished" datetime="2017-06-11T05:22:31+08:00">2017-06-11</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-27 12:06:57" itemprop="dateModified" datetime="2019-09-27T12:06:57+08:00">2019-09-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/elk/" itemprop="url" rel="index"><span itemprop="name">elk</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Filbeat OutPut </p>
+<a id="more"></a>
+<h3 id="Filebeat-Elasticsearch-OutPut"><a href="#Filebeat-Elasticsearch-OutPut" class="headerlink" title="Filebeat Elasticsearch OutPut"></a>Filebeat Elasticsearch OutPut</h3><blockquote>
+<p>configure </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">output.elasticsearch:</span><br><span class="line">  hosts: [&quot;http://localhost:9200&quot;]</span><br><span class="line">  template.enabled: true</span><br><span class="line">  template.path: &quot;filebeat.template.json&quot;</span><br><span class="line">  template.overwrite: false</span><br><span class="line">  index: &quot;filebeat&quot;</span><br><span class="line">  ssl.certificate_authorities: [&quot;/etc/pki/root/ca.pem&quot;]</span><br><span class="line">  ssl.certificate: &quot;/etc/pki/client/cert.pem&quot;</span><br><span class="line">  ssl.key: &quot;/etc/pki/client/cert.key&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>定义ip port add portocalhttps </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output.elasticsearch:</span><br><span class="line">  hosts: [&quot;localhost&quot;]</span><br><span class="line">  protocol: &quot;https&quot;</span><br><span class="line">  username: &quot;admin&quot;</span><br><span class="line">  password: &quot;s3cr3t&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>compression_level <ul>
+<li>gzip 压缩级别 range（1-9） </li>
+</ul>
+</li>
+<li>work <ul>
+<li>发送事件到es的工作数量 </li>
+</ul>
+</li>
+<li><p>index </p>
+<ul>
+<li>The index name to write events to. </li>
+<li>The default is “filebeat-%{+yyyy.MM.dd}” (for example,”filebeat-2015.04.26”).</li>
+</ul>
+</li>
+<li><p>indices</p>
+<blockquote>
+<p>支持条件，基于格式字符串的字段访问和名称映射的索引选择器规则的数组 </p>
+</blockquote>
+<ul>
+<li>index <ul>
+<li>要使用的索引格式字符串。 如果使用的字段丢失，则规则失败。 </li>
+</ul>
+</li>
+<li>mapping <ul>
+<li>映射字典为新名字</li>
+</ul>
+</li>
+<li>default <ul>
+<li>默认字符串数值</li>
+</ul>
+</li>
+<li><p>when     </p>
+<ul>
+<li>选择匹配条件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">output.elasticsearch:</span><br><span class="line">  hosts: [&quot;http://localhost:9200&quot;]</span><br><span class="line">  index: &quot;logs-%&#123;+yyyy.MM.dd&#125;&quot;</span><br><span class="line">  indices:</span><br><span class="line">    - index: &quot;critical-%&#123;+yyyy.MM.dd&#125;&quot;</span><br><span class="line">      when.contains:</span><br><span class="line">        message: &quot;CRITICAL&quot;</span><br><span class="line">    - index: &quot;error-%&#123;+yyyy.MM.dd&#125;&quot;</span><br><span class="line">      when.contains:</span><br><span class="line">        message: &quot;ERR&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>pipeline </p>
+<ul>
+<li><p>格式字符串指定获取节点写入事件pipeline的id值</p>
+<pre><code>  output.elasticsearch:
+      hosts: [&quot;http://localhost:9200&quot;]
+      pipeline: my_pipeline_id
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>pipelines </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">filebeat.prospectors:</span><br><span class="line">- paths: [&quot;/var/log/app/normal/*.log&quot;]</span><br><span class="line"> 		fields:</span><br><span class="line">   	type: &quot;normal&quot;</span><br><span class="line">- paths: [&quot;/var/log/app/critical/*.log&quot;]</span><br><span class="line"> 		fields:</span><br><span class="line">   	type: &quot;critical&quot;</span><br><span class="line"></span><br><span class="line">output.elasticsearch:</span><br><span class="line"> 	hosts: [&quot;http://localhost:9200&quot;]</span><br><span class="line"> 	index: &quot;filebeat-%&#123;+yyyy.MM.dd&#125;&quot;</span><br><span class="line"> 	pipelines:</span><br><span class="line">  - pipeline: critical_pipeline</span><br><span class="line">	   when.equals:</span><br><span class="line">       	  type: &quot;critical&quot;</span><br><span class="line">    - pipeline: normal_pipeline</span><br><span class="line">     	   when.equals:</span><br><span class="line">       	  type: &quot;normal&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>template</p>
+</li>
+</ul>
+<pre><code>    output.elasticsearch:
+        hosts: [&quot;localhost:9200&quot;]
+        template.name: &quot;filebeat&quot;
+        template.path: &quot;filebeat.template.json&quot;
+        template.overwrite: false
+</code></pre><ul>
+<li>templates.versions </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output.elasticsearch:</span><br><span class="line">  hosts: [&quot;localhost:9200&quot;]</span><br><span class="line">  template.path: &quot;filebeat.template.json&quot;</span><br><span class="line">  template.overwrite: false</span><br><span class="line">  template.versions.2x.path: &quot;filebeat.template-es2x.json</span><br></pre></td></tr></table></figure>
+<ul>
+<li>max_retries <ul>
+<li>当发送失败的时候，尝试多少次发送事件 </li>
+</ul>
+</li>
+<li>bulk_max_size <ul>
+<li>单个Elasticsearch批量API索引请求中批量的最大事件数 默认值为50</li>
+</ul>
+</li>
+<li><p>timeout </p>
+<ul>
+<li>The http request timeout in seconds for the Elasticsearch request </li>
+<li>The default is 90 </li>
+</ul>
+</li>
+<li><p>flush_interval </p>
+<ul>
+<li>在两个批量API索引请求之间等待新事件的秒数</li>
+</ul>
+</li>
+<li>ssl <ul>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/current/configuration-output-ssl.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/current/configuration-output-ssl.html</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Filebeat-Logstash-OutPut"><a href="#Filebeat-Logstash-OutPut" class="headerlink" title="Filebeat Logstash OutPut"></a>Filebeat Logstash OutPut</h3><blockquote>
+<p>需要logstash服务端安装beat插件 使用lumberjack协议发送事件到logstash </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">  hosts: [&quot;localhost:5044&quot;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Metadata Fields </p>
+<ul>
+<li><p>@meatedata </p>
+<ul>
+<li>Filebeat使用@metadata字段将元数据发送到Logstash  </li>
+<li>@metadata字段的内容只存在于Logstash中，不属于从Logstash发送的任何事件的一部分</li>
+<li><p>有关@metadata字段的更多信息，请参阅Logstash文档<a href="https://www.elastic.co/guide/en/logstash/5.4/event-dependent-configuration.html#metadata" target="_blank" rel="noopener">logstash doucument</a></p>
+<pre><code>  {
+      ...
+          &quot;@metadata&quot;: { 
+           &quot;beat&quot;: &quot;filebeat&quot;, 
+          &quot;type&quot;: &quot;&lt;event type&gt;&quot; 
+      }    
+  }
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>logstash to elasticsearch </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  beats &#123;</span><br><span class="line">    port =&gt; 5044</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    hosts =&gt; [&quot;http://localhost:9200&quot;]</span><br><span class="line">    index =&gt; &quot;%&#123;[@metadata][beat]&#125;-%&#123;+YYYY.MM.dd&#125;&quot; </span><br><span class="line">    document_type =&gt; &quot;%&#123;[@metadata][type]&#125;&quot; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>enabled </li>
+<li>hosts </li>
+<li>compression_level </li>
+<li>worker </li>
+<li><p>loadbalance </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output.logstash:</span><br><span class="line">     hosts: [&quot;localhost:5044&quot;, &quot;localhost:5045&quot;]</span><br><span class="line">     loadbalance: true</span><br><span class="line">     index: filebeat</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pipelining </p>
+<ul>
+<li>异步处理事件，默认关闭    </li>
+</ul>
+</li>
+<li>index</li>
+<li>ssl</li>
+<li>timeout </li>
+<li>max_retries </li>
+<li>bulk_max_size <ul>
+<li>The maximum number of events to bulk in a single Logstash request </li>
+<li>The default is 2048.</li>
+</ul>
+</li>
+</ul>
+<h3 id="kafka-OutPut"><a href="#kafka-OutPut" class="headerlink" title="kafka OutPut"></a>kafka OutPut</h3><blockquote>
+<p>The Kafka output sends the events to Apache Kafka.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">output.kafka:</span><br><span class="line">  # initial brokers for reading cluster metadata</span><br><span class="line">  hosts: [&quot;kafka1:9092&quot;, &quot;kafka2:9092&quot;, &quot;kafka3:9092&quot;]</span><br><span class="line"></span><br><span class="line">  # message topic selection + partitioning</span><br><span class="line">  topic: &apos;%&#123;[type]&#125;&apos;</span><br><span class="line">  partition.round_robin:</span><br><span class="line">    reachable_only: false</span><br><span class="line"></span><br><span class="line">  required_acks: 1</span><br><span class="line">  compression: gzip</span><br><span class="line">  max_message_bytes: 1000000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>enabled </li>
+<li>hosts</li>
+<li>version</li>
+<li>username </li>
+<li>password </li>
+<li><p>topic </p>
+</li>
+<li><p>topics </p>
+<ul>
+<li>topic </li>
+<li>mapping </li>
+<li>default </li>
+<li>when </li>
+</ul>
+</li>
+<li><p>partition </p>
+<ul>
+<li>random.group_events </li>
+<li>round_robin.group_events </li>
+<li>hash.hash</li>
+<li>hash.random</li>
+</ul>
+</li>
+<li><p>client_id</p>
+</li>
+<li>worker</li>
+<li><p>codec </p>
+</li>
+<li><p>metadata </p>
+<ul>
+<li>refresh_frequency </li>
+<li>retry.max </li>
+<li>retry.backoff </li>
+</ul>
+</li>
+<li><p>max_retries</p>
+</li>
+<li>bulk_max_size</li>
+<li>timeout</li>
+<li>broker_timeout </li>
+<li>channel_buffer_size </li>
+<li>keep_alive</li>
+<li>compression </li>
+<li>max_message_bytes </li>
+<li>required_acks</li>
+<li>flush_interval     </li>
+<li>ssl</li>
+</ul>
+<h3 id="Redis-OutPut"><a href="#Redis-OutPut" class="headerlink" title="Redis OutPut"></a>Redis OutPut</h3><blockquote>
+<p>This output works with Redis 3.2.4.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output.redis:</span><br><span class="line">  hosts: [&quot;localhost&quot;]</span><br><span class="line">  password: &quot;my_password&quot;</span><br><span class="line">  key: &quot;filebeat&quot;</span><br><span class="line">  db: 0</span><br><span class="line">  timeout: 5</span><br></pre></td></tr></table></figure>
+<ul>
+<li>enabled</li>
+<li>hosts </li>
+<li>port </li>
+<li>index</li>
+<li>key</li>
+</ul>
+<pre><code>    output.redis:
+      hosts: [&quot;localhost&quot;]
+      key: &quot;%{[fields.list]:fallback}&quot;    
+</code></pre><ul>
+<li><p>keys </p>
+<ul>
+<li>key </li>
+<li>mapping </li>
+<li>default </li>
+<li><p>when </p>
+<pre><code>  output.redis:
+      hosts: [&quot;localhost&quot;]
+      key: &quot;default_list&quot;
+      keys:
+       - key: &quot;info_list&quot;   # send to info_list if `message` field contains INFO
+          when.contains:
+          message: &quot;INFO&quot;
+     - key: &quot;debug_list&quot;  # send to debug_list if `message` field contains DEBUG
+         when.contains:
+         message: &quot;DEBUG&quot;
+     - key: &quot;%{[type]}&quot;
+          mapping:
+          &quot;http&quot;: &quot;frontend_list&quot;
+          &quot;nginx&quot;: &quot;frontend_list&quot;
+          &quot;mysql&quot;: &quot;backend_list&quot;
+</code></pre></li>
+</ul>
+</li>
+<li><p>passport </p>
+</li>
+<li>db </li>
+<li><p>datatype </p>
+<blockquote>
+<p>用于发布事件的Redis数据类型。如果数据类型为列表，则使用Redis RPUSH命令，并将所有事件添加到列表中，并在键下定义键。 如果使用数据类型通道，则使用Redis PUBLISH命令，这意味着所有事件都被推送到Redis的pub / sub机制。 通道的名称是键下定义的。 默认值为列表。</p>
+</blockquote>
+</li>
+<li><p>codec </p>
+</li>
+<li>worker </li>
+<li>loadbalance </li>
+<li>timeout</li>
+<li>max_retries</li>
+<li>bulk_max_size </li>
+<li>ssl </li>
+<li>proxy_url </li>
+<li>proxy_use_local_resolver </li>
+</ul>
+<h3 id="File-OutPut"><a href="#File-OutPut" class="headerlink" title="File OutPut"></a>File OutPut</h3><blockquote>
+<p>文件输出将事务转储到每个事务处于JSON格式的文件中。 目前，该输出用于测试，但可以作为Logstash的输入</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output.file:</span><br><span class="line">  path: &quot;/tmp/filebeat&quot;</span><br><span class="line">  filename: filebeat</span><br><span class="line">  #rotate_every_kb: 10000</span><br><span class="line">  #number_of_files: 7</span><br></pre></td></tr></table></figure>
+<ul>
+<li>enables </li>
+<li>path <ul>
+<li>定义保存文件的路径</li>
+</ul>
+</li>
+<li>filename <ul>
+<li>定义保存文件的名字</li>
+</ul>
+</li>
+<li>rotate_every_kb <ul>
+<li>定义每个文件达到多少kb就开始切割</li>
+</ul>
+</li>
+<li>number_if_files<ul>
+<li>定义保存几份文件 </li>
+</ul>
+</li>
+<li>codec</li>
+</ul>
+<h3 id="Console-OutPut"><a href="#Console-OutPut" class="headerlink" title="Console OutPut"></a>Console OutPut</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output.console:</span><br><span class="line">  pretty: true</span><br></pre></td></tr></table></figure>
+<ul>
+<li>pretty </li>
+<li>codec</li>
+<li>enabled </li>
+<li>bulk_max_size</li>
+</ul>
+<h3 id="Codec-Output"><a href="#Codec-Output" class="headerlink" title="Codec Output"></a>Codec Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output.console:</span><br><span class="line">  codec.json:</span><br><span class="line">    pretty: true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output.console:</span><br><span class="line">  codec.format:</span><br><span class="line">    string: &apos;%&#123;[@timestamp]&#125; %&#123;[message]&#125;&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Loggin-OutPut"><a href="#Loggin-OutPut" class="headerlink" title="Loggin OutPut"></a>Loggin OutPut</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">logging.level: warning</span><br><span class="line">logging.to_files: true</span><br><span class="line">logging.to_syslog: false</span><br><span class="line">logging.files:</span><br><span class="line">  path: /var/log/mybeat</span><br><span class="line">  name: mybeat.log</span><br><span class="line">  rotateeverybytes: 10MB </span><br><span class="line">  keepfiles: 7</span><br></pre></td></tr></table></figure>
+<h3 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h3><p>By default, Filebeat sends all its output to syslog. When you run Filebeat in the foreground, you can use the -e command line flag to redirect the output to standard error instead. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebeat -e</span><br></pre></td></tr></table></figure>
+<p>The default configuration file is filebeat.yml (the location of the file varies by platform). You can use a different configuration file by specifying<br>the -c flag. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebeat -e -c myfilebeatconfig.yml</span><br></pre></td></tr></table></figure>
+<p>You can increase the verbosity of debug messages by enabling one or more debug selectors. For example, to view the published transactions, you can start Filebeat with the publish selector like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebeat -e -d &quot;publish&quot;</span><br></pre></td></tr></table></figure>
+<p>If you want all the debugging output (fair warning, it’s quite a lot), you can use *, like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebeat -e -d &quot;*&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="support"><a href="#support" class="headerlink" title="support"></a>support</h3><p><a href="https://www.elastic.co/support/matrix#show_compatibility" target="_blank" rel="noopener">https://www.elastic.co/support/matrix#show_compatibility</a>         </p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/filebeat/" rel="tag"># filebeat</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2017/06/11/filebeat_config/" rel="next" title="filebeat config">
+                  <i class="fa fa-chevron-left"></i> filebeat config
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2017/09/06/ansible 基础模块介绍/" rel="prev" title="ansible 基础模块介绍">
+                  ansible 基础模块介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filebeat-Elasticsearch-OutPut"><span class="nav-number">1.</span> <span class="nav-text">Filebeat Elasticsearch OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filebeat-Logstash-OutPut"><span class="nav-number">2.</span> <span class="nav-text">Filebeat Logstash OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka-OutPut"><span class="nav-number">3.</span> <span class="nav-text">kafka OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-OutPut"><span class="nav-number">4.</span> <span class="nav-text">Redis OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-OutPut"><span class="nav-number">5.</span> <span class="nav-text">File OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Console-OutPut"><span class="nav-number">6.</span> <span class="nav-text">Console OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Codec-Output"><span class="nav-number">7.</span> <span class="nav-text">Codec Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loggin-OutPut"><span class="nav-number">8.</span> <span class="nav-text">Loggin OutPut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Debugging"><span class="nav-number">9.</span> <span class="nav-text">Debugging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#support"><span class="nav-number">10.</span> <span class="nav-text">support</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="步东舒">
+  <p class="site-author-name" itemprop="name">步东舒</p>
+  <div class="site-description" itemprop="description">Learning Linux Python Go 等知识点</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">步东舒</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>
