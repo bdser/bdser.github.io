@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="凡步" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏   IaaS理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 入门简介">
+<meta property="og:url" content="http://budongshu.gitee.io/2018/04/24/docker_container容器简介/index.html">
+<meta property="og:site_name" content="凡步">
+<meta property="og:description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏   IaaS理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fqo4sru5sbj30yw0g2tb3.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fqoqgpmalgj30ty0okdjn.jpg">
+<meta property="og:updated_time" content="2020-03-27T06:17:51.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker 入门简介">
+<meta name="twitter:description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏   IaaS理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fqo4sru5sbj30yw0g2tb3.jpg">
+  <link rel="canonical" href="http://budongshu.gitee.io/2018/04/24/docker_container容器简介/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>docker 入门简介 | 凡步</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">凡步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个专注技术的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bdstravel/bdstravel.github.io" class="github-corner" title="bdstravel GitHub" aria-label="bdstravel GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://budongshu.gitee.io/2018/04/24/docker_container容器简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="凡步">
+      <meta itemprop="description" content="Learning Linux Python Go 等知识点">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凡步">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">docker 入门简介
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-24 20:26:00" itemprop="dateCreated datePublished" datetime="2018-04-24T20:26:00+08:00">2018-04-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-27 14:17:51" itemprop="dateModified" datetime="2020-03-27T14:17:51+08:00">2020-03-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="云计算平台"><a href="#云计算平台" class="headerlink" title="云计算平台"></a>云计算平台</h3><ul>
+<li>IaaS<ul>
+<li>虚拟机 存储 负载均衡 网络</li>
+</ul>
+</li>
+<li>PaaS<ul>
+<li>运行时环境 数据库 web服务器 开发工具</li>
+</ul>
+</li>
+<li>SaaS<ul>
+<li>客户关系管理 邮件 虚拟桌面 通信 游戏</li>
+</ul>
+</li>
+</ul><h4 id="IaaS"><a href="#IaaS" class="headerlink" title="IaaS"></a>IaaS</h4><p>理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面<br>部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心</p><a id="more"></a>
+
+<h4 id="Paas"><a href="#Paas" class="headerlink" title="Paas"></a>Paas</h4><p>应用开发人员服务，提供支撑应用运行所需要的软件运行时环境，相关工具与服务，如数据库服务，<br>日志服务 监控服务等，让应用开发者可以专注于核心业务的开发</p>
+<h4 id="SaaS"><a href="#SaaS" class="headerlink" title="SaaS"></a>SaaS</h4><p>一般用户服务，提供了一套完整可用的软件系统，让一般用户无需关注技术细节，只需要通过浏览器<br>应用客户端等方式 就能使用部署在云上的应用服务</p>
+<h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><p>最新的容器技术引入了 OpenVZ Solaris Zones 以及 Linux容器（如lxc）使用这些新技术，<br>容器不再仅仅是一个单纯的运行环境，在自己的权限范围内，容器更像是一个完整的宿主机，对Docker<br>来说，它得益于现在Linux内核特性，如控制组(control group),命名空间(namespace) 技术，<br>容器和宿主机之间的隔离更加彻底，容器有独立的网络和存储栈，还拥有自己的资源管理能力，使得<br>同一台宿主机中的多个容器可以友好的地共存</p>
+<p>容器需要的开销资源有限，和传统的虚拟化以及半虚拟化技术(paravirtualization)相比，容器<br>运行不需要模拟(emulation layer）和管理层（hypervisor layer），而是使用操作通的系统<br>调用接口，这降低了运行单个容器所需要的开销，也使得宿主机中可以运行更多的容器</p>
+<h3 id="容器云"><a href="#容器云" class="headerlink" title="容器云"></a>容器云</h3><p>容器云以容器为资源分割和调度的基本单位，封装整个软件运行时环境 为开发者和系统管理员提供<br>用于构建 发布和运行分布式应用的平台。当容器云专注于资源共享和隔离，容器编排与部署时候<br>它更近传统的Iaas。当容器云渗透到应用支撑与运行是的环境时， 它更接近于传统的PaaS.</p>
+<p>从容器到容器云是一种伟大的进化，并依旧在日积月累中不断前行，现在让我们一起进入Docker世界<br>感受容器和容器云的魅力</p>
+<h3 id="docker-简介"><a href="#docker-简介" class="headerlink" title="docker 简介"></a>docker 简介</h3><p>Docker是一个能够把开发的应用程序自动部署到容器的开源引擎。用于构建 发布 和运行分部署<br>应用的平台，它是一个跨平台 可移植并且简单易用的容器解决方案。</p>
+<p>Docker代码托管在GitHub上，基于Go语言开发 并遵从Apache 2.0协议，通过操作系统内核技术(namespaces cgroups)等 为容器提供资源隔离与安全保障。</p>
+<p>Docker项目是由Solomon Hykes 所带领的团队发起，在Docker公司的前身dotCloud内部启动孕育<br>代码托管在GitHub。</p>
+<p>2013年3月：Docker正式发布开源版本。</p>
+<h3 id="docker-特点"><a href="#docker-特点" class="headerlink" title="docker 特点"></a>docker 特点</h3><ul>
+<li>持续部署与测试</li>
+<li>跨平台支持</li>
+<li>环境标准和版本控制</li>
+<li>高资源利用率与隔离</li>
+<li>容器跨平台性与镜像</li>
+<li>易于理解且易用 </li>
+<li>应用镜像仓库</li>
+</ul>
+<h3 id="Containers-and-virtual-machines"><a href="#Containers-and-virtual-machines" class="headerlink" title="Containers and virtual machines"></a>Containers and virtual machines</h3><p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqo4sru5sbj30yw0g2tb3.jpg" alt></p>
+<h3 id="docker-客户端"><a href="#docker-客户端" class="headerlink" title="docker 客户端"></a>docker 客户端</h3><p>Docker是一个典型的C/S架构的应用程序，但在发布上 Docker将客户端和服务器端统一在同一个<br>二进制文件中，不过 这只是对于Linux系统而言的 在其他平台上如Mac上，Docker只提供了用户<br>端</p>
+<p>Docker客户端一般通过Docker Command来发起请求，另外 也可以通过Docker提供的一整套<br>Restful API来发起请求， 这种方式更多地被应用在应用程序的代码中</p>
+<h3 id="docker-daemon"><a href="#docker-daemon" class="headerlink" title="docker daemon"></a>docker daemon</h3><p>Docker daemon也可以被理解成DockerServer，另外 人们也常常用Docker Engine来直接<br>描述它，因为这实际上就是驱动整个Docker功能的核心引擎 </p>
+<p>简单的说，Docker daemon实现的功能就是接收客户端来的请求，并实现请求所要求的功能，<br>同时针对返回相应的结果，在功能的实现上，因为涉及了容器 镜像 存储等多方面的内容<br>daemon内部的机制会复杂很多，涉及多个模块之间的实现和交互</p>
+<h3 id="docker-镜像"><a href="#docker-镜像" class="headerlink" title="docker 镜像"></a>docker 镜像</h3><p>可以理解为类似于传统虚拟化的iso镜像，不过Docker镜像相对要轻量化很多，它只是一个可以<br>定制的rootfs。Docker镜像的另一个创新是 它是层级的 并且是可复用的。如果是基于相同的<br>发行版的镜像，在大多数文件的内容上都是一样的，基于此，当然会希望可以服用他们。<br>利用Unionfs的特性，Docker会极大迪减少磁盘和内存的开销</p>
+<p>docker 镜像可以通过Dockerfile来创建的，Dockerfile提供了镜像内容的定制，同时也<br>体现了曾经关系的建立。也可以通过使用docker commit命令来手动将修改后的内容生成镜像<br>这些将在后面详细介绍</p>
+<h3 id="Registry"><a href="#Registry" class="headerlink" title="Registry"></a>Registry</h3><p>Registry是一个存放镜像的仓库，它通常部署在互联网服务器上或者云端上</p>
+<p>Docker公司提供了官方的Registry叫Docker Hub这上面提供了大多数常用软件和发行版的镜像</p>
+<p>Registry本身也是一个开源项目，任务人都可以下载进项部署，所以多数企业选择在自己的内部<br>部署一套自己的Docker Hub 后二次开发。 </p>
+<h3 id="docker-生态"><a href="#docker-生态" class="headerlink" title="docker 生态"></a>docker 生态</h3><p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fqoqgpmalgj30ty0okdjn.jpg" alt></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>都是给女盆友的</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/mm_reward_qrcode.png" alt="凡步 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/docker/" rel="tag"># docker</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/04/21/Centos6.6_编译php7andphp7扩展/" rel="next" title="Centos6.6 编译安装php7和php扩展">
+                  <i class="fa fa-chevron-left"></i> Centos6.6 编译安装php7和php扩展
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/04/25/docker_install安装/" rel="prev" title="docker 安装">
+                  docker 安装 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#云计算平台"><span class="nav-number">1.</span> <span class="nav-text">云计算平台</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IaaS"><span class="nav-number">1.1.</span> <span class="nav-text">IaaS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Paas"><span class="nav-number">1.2.</span> <span class="nav-text">Paas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SaaS"><span class="nav-number">1.3.</span> <span class="nav-text">SaaS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器"><span class="nav-number">2.</span> <span class="nav-text">容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器云"><span class="nav-number">3.</span> <span class="nav-text">容器云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-简介"><span class="nav-number">4.</span> <span class="nav-text">docker 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-特点"><span class="nav-number">5.</span> <span class="nav-text">docker 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Containers-and-virtual-machines"><span class="nav-number">6.</span> <span class="nav-text">Containers and virtual machines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-客户端"><span class="nav-number">7.</span> <span class="nav-text">docker 客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-daemon"><span class="nav-number">8.</span> <span class="nav-text">docker daemon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-镜像"><span class="nav-number">9.</span> <span class="nav-text">docker 镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registry"><span class="nav-number">10.</span> <span class="nav-text">Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-生态"><span class="nav-number">11.</span> <span class="nav-text">docker 生态</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="凡步">
+  <p class="site-author-name" itemprop="name">凡步</p>
+  <div class="site-description" itemprop="description">Learning Linux Python Go 等知识点</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/bdstravel" title="GitHub &rarr; https://github.com/bdstravel" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bdstravel@126.com" title="E-Mail &rarr; mailto:bdstravel@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">凡步</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '8f62e94f804c8a93d972',
+      clientSecret: 'd1c1121be68dc5577b9c2504018cfba2f430c007',
+      repo: 'bdsgitalk',
+      owner: 'bdstravel',
+      admin: ['budongshu'],
+      id: '7331892fdf630e107f6ada96ad19af58',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

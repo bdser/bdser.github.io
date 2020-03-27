@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="凡步" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="系统环境12[root@office-c6-4 ~]# cat /etc/redhat-release CentOS release 6.6 (Final)yum源gitlab配置12345678[root@office-c6-4 ~]# cat /etc/yum.repos.d/gitlab-ce.repo [gitlab-ce]name=gitlab-cebaseurl=http://mirr">
+<meta name="keywords" content="gitlab,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitlab-git-Install">
+<meta property="og:url" content="http://budongshu.gitee.io/2016/09/07/gitlab-git-Install/index.html">
+<meta property="og:site_name" content="凡步">
+<meta property="og:description" content="系统环境12[root@office-c6-4 ~]# cat /etc/redhat-release CentOS release 6.6 (Final)yum源gitlab配置12345678[root@office-c6-4 ~]# cat /etc/yum.repos.d/gitlab-ce.repo [gitlab-ce]name=gitlab-cebaseurl=http://mirr">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i.imgur.com/vA9Wrlc.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login2.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login1.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login3.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login4.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/add-user.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/user2.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/user3.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/user4.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/group1.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/group2.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/project.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/readme.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/dev1.png">
+<meta property="og:image" content="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/dev2.png">
+<meta property="og:updated_time" content="2020-03-27T06:17:27.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gitlab-git-Install">
+<meta name="twitter:description" content="系统环境12[root@office-c6-4 ~]# cat /etc/redhat-release CentOS release 6.6 (Final)yum源gitlab配置12345678[root@office-c6-4 ~]# cat /etc/yum.repos.d/gitlab-ce.repo [gitlab-ce]name=gitlab-cebaseurl=http://mirr">
+<meta name="twitter:image" content="http://i.imgur.com/vA9Wrlc.png">
+  <link rel="canonical" href="http://budongshu.gitee.io/2016/09/07/gitlab-git-Install/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>gitlab-git-Install | 凡步</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">凡步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个专注技术的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bdstravel/bdstravel.github.io" class="github-corner" title="bdstravel GitHub" aria-label="bdstravel GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://budongshu.gitee.io/2016/09/07/gitlab-git-Install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="凡步">
+      <meta itemprop="description" content="Learning Linux Python Go 等知识点">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凡步">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">gitlab-git-Install
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2016-09-07 20:26:00" itemprop="dateCreated datePublished" datetime="2016-09-07T20:26:00+08:00">2016-09-07</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-27 14:17:27" itemprop="dateModified" datetime="2020-03-27T14:17:27+08:00">2020-03-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# cat /etc/redhat-release </span><br><span class="line">CentOS release 6.6 (Final)</span><br></pre></td></tr></table></figure><h2 id="yum源gitlab配置"><a href="#yum源gitlab配置" class="headerlink" title="yum源gitlab配置"></a>yum源gitlab配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# cat /etc/yum.repos.d/gitlab-ce.repo </span><br><span class="line">[gitlab-ce]</span><br><span class="line">name=gitlab-ce</span><br><span class="line">baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6</span><br><span class="line">repo_gpgcheck=0 </span><br><span class="line">gpgcheck=0 </span><br><span class="line">enabled=1 </span><br><span class="line">gpgkey=https://packages.gitlab.com/gpg.key</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+<h2 id="安装gitlab"><a href="#安装gitlab" class="headerlink" title="安装gitlab"></a>安装gitlab</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gitlab-ce-8.10.8* -y</span><br></pre></td></tr></table></figure>
+<h3 id="配置gitlab"><a href="#配置gitlab" class="headerlink" title="配置gitlab"></a>配置gitlab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">external_url &apos;http://192.168.10.14&apos;</span><br><span class="line">gitlab_rails[&apos;smtp_enable&apos;] = true #邮件发送设置</span><br><span class="line">gitlab_rails[&apos;smtp_address&apos;] = &quot;smtp.163.com&quot;</span><br><span class="line">gitlab_rails[&apos;smtp_port&apos;] = 25</span><br><span class="line">gitlab_rails[&apos;smtp_user_name&apos;] = &quot;rooroot@163.com&quot;</span><br><span class="line">gitlab_rails[&apos;smtp_password&apos;] = &quot;password&quot;</span><br><span class="line">gitlab_rails[&apos;smtp_domain&apos;] = &quot;163.com&quot;</span><br><span class="line">gitlab_rails[&apos;smtp_authentication&apos;] = :login</span><br><span class="line">gitlab_rails[&apos;smtp_enable_starttls_auto&apos;] = true</span><br><span class="line">gitlab_rails[&apos;smtp_tls&apos;] = false</span><br><span class="line">gitlab_rails[&apos;gitlab_email_from&apos;] = &quot;rooroot@163.com&quot;</span><br><span class="line">user[&quot;git_user_email&quot;] = &quot;rooroot@163.com</span><br></pre></td></tr></table></figure>
+<h3 id="配置邮件发送"><a href="#配置邮件发送" class="headerlink" title="配置邮件发送"></a>配置邮件发送</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# echo &quot;Test mail from postfix&quot; | mail -s &quot;Test Postfix&quot; budongshu@mia.com</span><br><span class="line">-bash: mail: command not found</span><br><span class="line">[root@office-c6-4 ~]# yum install mailx -y </span><br><span class="line">[root@office-c6-4 ~]# echo &quot;Test mail from postfix&quot; | mail -s &quot;Test Postfix&quot; budongshu@xxxxxxx.com</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/vA9Wrlc.png" alt></p>
+<h3 id="启动并查看gitlab状态"><a href="#启动并查看gitlab状态" class="headerlink" title="启动并查看gitlab状态"></a>启动并查看gitlab状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# gitlab-ctl  reconfigure</span><br><span class="line">[root@office-c6-4 ~]# gitlab-ctl status </span><br><span class="line">run: gitlab-workhorse: (pid 1650) 264s; run: log: (pid 1546) 348s</span><br><span class="line">run: logrotate: (pid 1564) 340s; run: log: (pid 1563) 340s</span><br><span class="line">run: nginx: (pid 1552) 346s; run: log: (pid 1551) 346s</span><br><span class="line">run: postgresql: (pid 1401) 392s; run: log: (pid 1400) 392s</span><br><span class="line">run: redis: (pid 1318) 398s; run: log: (pid 1317) 398s</span><br><span class="line">run: sidekiq: (pid 1536) 354s; run: log: (pid 1535) 354s</span><br><span class="line">run: unicorn: (pid 1737) 199s; run: log: (pid 1503) 356s</span><br></pre></td></tr></table></figure>
+<h3 id="访问界面"><a href="#访问界面" class="headerlink" title="访问界面"></a>访问界面</h3><blockquote>
+<p>如若出现界面502的情况，请检查本地是否配置nginx,还有80,8080端口是否被占用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.10.14</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="web界面访问"><a href="#web界面访问" class="headerlink" title="web界面访问"></a>web界面访问</h4><blockquote>
+<p>首次登陆会提示让其设置新密码</p>
+</blockquote>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login2.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login1.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login3.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/login4.png" alt></p>
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/add-user.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/user2.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/user3.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/user4.png" alt></p>
+<h4 id="创建一个组并加入dev成员"><a href="#创建一个组并加入dev成员" class="headerlink" title="创建一个组并加入dev成员"></a>创建一个组并加入dev成员</h4><p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/group1.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/group2.png" alt></p>
+<h4 id="创建一个project"><a href="#创建一个project" class="headerlink" title="创建一个project"></a>创建一个project</h4><p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/project.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/readme.png" alt></p>
+<h3 id="客户端安装git-1-9"><a href="#客户端安装git-1-9" class="headerlink" title="客户端安装git-1.9"></a>客户端安装git-1.9</h3><blockquote>
+<p>默认git-1.7，yum装的有些问题，所以升级到1.9</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</span><br><span class="line">cd /usr/src</span><br><span class="line">wget https://www.kernel.org/pub/software/scm/git/git-1.9.4.tar.gz</span><br><span class="line">tar xzf git-1.9.4.tar.gz</span><br><span class="line">cd git-1.9.4</span><br><span class="line">make prefix=/usr/local/git all</span><br><span class="line">make prefix=/usr/local/git install</span><br><span class="line">echo &quot;export PATH=$PATH:/usr/local/git/bin&quot; &gt;&gt; /etc/bashrc</span><br><span class="line">source /etc/bashrc</span><br></pre></td></tr></table></figure>
+<h3 id="客户端git下载上传"><a href="#客户端git下载上传" class="headerlink" title="客户端git下载上传"></a>客户端git下载上传</h3><h4 id="git-clone-root管理员用户"><a href="#git-clone-root管理员用户" class="headerlink" title="git clone(root管理员用户)"></a>git clone(root管理员用户)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-2 data]# git clone http://192.168.10.14/ops/testconfig.git </span><br><span class="line">Cloning into &apos;testconfig&apos;...</span><br><span class="line">Username for &apos;http://192.168.10.14&apos;: root        #输入用户名</span><br><span class="line">Password for &apos;http://root@192.168.10.14&apos;:        #输入密码</span><br><span class="line">remote: Counting objects: 6, done.</span><br><span class="line">remote: Compressing objects: 100% (3/3), done.</span><br><span class="line">remote: Total 6 (delta 0), reused 0 (delta 0)</span><br><span class="line">Unpacking objects: 100% (6/6), done.</span><br><span class="line">Checking connectivity... done.</span><br></pre></td></tr></table></figure>
+<h4 id="git-clone-dev-组中的一个开发人员"><a href="#git-clone-dev-组中的一个开发人员" class="headerlink" title="git clone(dev 组中的一个开发人员)"></a>git clone(dev 组中的一个开发人员)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-2 ops]# git clone http://192.168.10.14/ops/testconfig.git </span><br><span class="line">Cloning into &apos;testconfig&apos;...</span><br><span class="line">Username for &apos;http://192.168.10.14&apos;: budongshu      #输入的是dev开发者的用户（不是root用户）</span><br><span class="line">Password for &apos;http://budongshu@192.168.10.14&apos;:      #该用户的密码</span><br><span class="line">remote: Counting objects: 13, done.</span><br><span class="line">remote: Compressing objects: 100% (8/8), done.</span><br><span class="line">remote: Total 13 (delta 0), reused 0 (delta 0)</span><br><span class="line">Unpacking objects: 100% (13/13), done.</span><br><span class="line">Checking connectivity... done.</span><br><span class="line"></span><br><span class="line">[root@office-c6-2 ops]# ll -ls testconfig/</span><br><span class="line">total 8</span><br><span class="line">4 -rw-r--r-- 1 root root 48 Sep 10 01:12 nginx.conf</span><br><span class="line">4 -rw-r--r-- 1 root root 15 Sep 10 01:12 README.md</span><br></pre></td></tr></table></figure>
+<h4 id="建立分支"><a href="#建立分支" class="headerlink" title="建立分支"></a>建立分支</h4><blockquote>
+<p>非组的admin管理员不可以将代码直接push到master分支上，需要建立一个分支<br>确认测试代码没有问题后，在进行合并merge </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-2 testconfig]# git config --global user.name &quot;budongshu&quot;</span><br><span class="line">[root@office-c6-2 testconfig]# git config --global user.email &quot;admin@126.com&quot;</span><br><span class="line">[root@office-c6-2 testconfig]# touch db.conf                    #新建一个配置文件（随意的，测试使用）</span><br><span class="line">[root@office-c6-2 testconfig]# echo &quot;listen 3306&quot; &gt;&gt; db.conf  </span><br><span class="line">[root@office-c6-2 testconfig]# git branch dev   		            #新建dev 分支</span><br><span class="line">[root@office-c6-2 testconfig]# git checkout dev 				    #切换到dev分支</span><br><span class="line">Switched to branch &apos;dev&apos;										</span><br><span class="line">[root@office-c6-2 testconfig]# git push origin dev              #将本地push到远程origin</span><br><span class="line">Username for &apos;http://192.168.10.14&apos;: budongshu				   </span><br><span class="line">Password for &apos;http://budongshu@192.168.10.14&apos;: </span><br><span class="line">Total 0 (delta 0), reused 0 (delta 0)</span><br><span class="line">To http://192.168.10.14/ops/testconfig.git</span><br><span class="line">   38982eb..4205f58  dev -&gt; dev</span><br><span class="line">[root@office-c6-2 testconfig]# echo &quot;ip 0.0.0.0 &quot; &gt;&gt; db.conf    #修改配置文件</span><br><span class="line">[root@office-c6-2 testconfig]# git add db.conf  			        #添加到暂存区</span><br><span class="line">[root@office-c6-2 testconfig]# git status 					    #查看状态</span><br><span class="line">On branch dev</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   db.conf</span><br><span class="line"></span><br><span class="line">[root@office-c6-2 testconfig]# git commit -m &quot;add db.conf &quot;   #提交</span><br><span class="line">[dev e198869] add db.conf</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"> create mode 100644 db.conf</span><br><span class="line">[root@office-c6-2 testconfig]# git push -u origin dev         #push到远程分支dev下</span><br><span class="line">Username for &apos;http://192.168.10.14&apos;: budongshu</span><br><span class="line">Password for &apos;http://budongshu@192.168.10.14&apos;: </span><br><span class="line">Counting objects: 5, done.</span><br><span class="line">Compressing objects: 100% (2/2), done.</span><br><span class="line">Writing objects: 100% (3/3), 319 bytes | 0 bytes/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To http://192.168.10.14/ops/testconfig.git</span><br><span class="line">   4205f58..e198869  dev -&gt; dev</span><br><span class="line">Branch dev set up to track remote branch dev from origin</span><br></pre></td></tr></table></figure>
+<h4 id="web界面查看"><a href="#web界面查看" class="headerlink" title="web界面查看"></a>web界面查看</h4><blockquote>
+<p>可以看到db.conf新建的文件已经上传到dev分支下面,如果测试没问后,在merge到master主分支上.</p>
+</blockquote>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/dev1.png" alt></p>
+<p><img src="http://7xnvvj.com1.z0.glb.clouddn.com//gitlab/dev2.png" alt></p>
+<h3 id="over"><a href="#over" class="headerlink" title="over"></a>over</h3>
+    </div>
+
+    
+    
+    
+        
+      
+        <div id="reward-container">
+  <div>都是给女盆友的</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/mm_reward_qrcode.png" alt="凡步 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/gitlab/" rel="tag"># gitlab</a>
+            
+              <a href="/tags/git/" rel="tag"># git</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/09/06/MySQL5.6_主从复制及读写分离的实现/" rel="next" title="MySQL5.6主从复制及读写分离的实现">
+                  <i class="fa fa-chevron-left"></i> MySQL5.6主从复制及读写分离的实现
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/09/08/jenkins-gitlab-git pull/" rel="prev" title="jenkins-gitlab-git pull">
+                  jenkins-gitlab-git pull <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">1.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yum源gitlab配置"><span class="nav-number">2.</span> <span class="nav-text">yum源gitlab配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gitlab"><span class="nav-number">3.</span> <span class="nav-text">安装gitlab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置gitlab"><span class="nav-number">3.1.</span> <span class="nav-text">配置gitlab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置邮件发送"><span class="nav-number">3.2.</span> <span class="nav-text">配置邮件发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动并查看gitlab状态"><span class="nav-number">3.3.</span> <span class="nav-text">启动并查看gitlab状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问界面"><span class="nav-number">3.4.</span> <span class="nav-text">访问界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web界面访问"><span class="nav-number">3.4.1.</span> <span class="nav-text">web界面访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建用户"><span class="nav-number">3.4.2.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个组并加入dev成员"><span class="nav-number">3.4.3.</span> <span class="nav-text">创建一个组并加入dev成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个project"><span class="nav-number">3.4.4.</span> <span class="nav-text">创建一个project</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端安装git-1-9"><span class="nav-number">3.5.</span> <span class="nav-text">客户端安装git-1.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端git下载上传"><span class="nav-number">3.6.</span> <span class="nav-text">客户端git下载上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-clone-root管理员用户"><span class="nav-number">3.6.1.</span> <span class="nav-text">git clone(root管理员用户)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-clone-dev-组中的一个开发人员"><span class="nav-number">3.6.2.</span> <span class="nav-text">git clone(dev 组中的一个开发人员)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立分支"><span class="nav-number">3.6.3.</span> <span class="nav-text">建立分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web界面查看"><span class="nav-number">3.6.4.</span> <span class="nav-text">web界面查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#over"><span class="nav-number">3.7.</span> <span class="nav-text">over</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="凡步">
+  <p class="site-author-name" itemprop="name">凡步</p>
+  <div class="site-description" itemprop="description">Learning Linux Python Go 等知识点</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/bdstravel" title="GitHub &rarr; https://github.com/bdstravel" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bdstravel@126.com" title="E-Mail &rarr; mailto:bdstravel@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">凡步</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '8f62e94f804c8a93d972',
+      clientSecret: 'd1c1121be68dc5577b9c2504018cfba2f430c007',
+      repo: 'bdsgitalk',
+      owner: 'bdstravel',
+      admin: ['budongshu'],
+      id: '65bcec07d3fb75747608d50a853cd250',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>
