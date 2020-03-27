@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="机器环境12CentOS release 6.6 (Final)kernal 2.6.32-504.23.4.el6.x86_64yumyum install -y  curl libcurl-devel libjpeg-devel libpng-devel libjped-devel freetype-devel libxslt-devel boost-devel gperf libevent-">
+  <meta name="description" content="机器环境12CentOS release 6.6 (Final)kernal 2.6.32-504.23.4.el6.x86_64">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos6.6 编译安装php7和php扩展">
 <meta property="og:url" content="http://budongshu.gitee.io/2018/04/21/Centos6.6_编译php7andphp7扩展/index.html">
 <meta property="og:site_name" content="凡步">
-<meta property="og:description" content="机器环境12CentOS release 6.6 (Final)kernal 2.6.32-504.23.4.el6.x86_64yumyum install -y  curl libcurl-devel libjpeg-devel libpng-devel libjped-devel freetype-devel libxslt-devel boost-devel gperf libevent-">
+<meta property="og:description" content="机器环境12CentOS release 6.6 (Final)kernal 2.6.32-504.23.4.el6.x86_64">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-27T06:18:27.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos6.6 编译安装php7和php扩展">
-<meta name="twitter:description" content="机器环境12CentOS release 6.6 (Final)kernal 2.6.32-504.23.4.el6.x86_64yumyum install -y  curl libcurl-devel libjpeg-devel libpng-devel libjped-devel freetype-devel libxslt-devel boost-devel gperf libevent-">
+<meta name="twitter:description" content="机器环境12CentOS release 6.6 (Final)kernal 2.6.32-504.23.4.el6.x86_64">
   <link rel="canonical" href="http://budongshu.gitee.io/2018/04/21/Centos6.6_编译php7andphp7扩展/">
 
 
@@ -359,8 +359,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS release 6.6 (Final)</span><br><span class="line">kernal 2.6.32-504.23.4.el6.x86_64</span><br></pre></td></tr></table></figure><h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><p>yum install -y  curl libcurl-devel libjpeg-devel libpng-devel libjped-devel freetype-devel libxslt-devel boost-devel gperf libevent-devel libuuid-devel libgearman  libgearman-devel</p><a id="more"></a>
-
+        <h3 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS release 6.6 (Final)</span><br><span class="line">kernal 2.6.32-504.23.4.el6.x86_64</span><br></pre></td></tr></table></figure><a id="more"></a>
+<h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><p>yum install -y  curl libcurl-devel libjpeg-devel libpng-devel libjped-devel freetype-devel libxslt-devel boost-devel gperf libevent-devel libuuid-devel libgearman  libgearman-devel</p>
 <h3 id="install-php"><a href="#install-php" class="headerlink" title="install php"></a>install php</h3><p>下载目录: <code>/opt/</code><br>安装目录: <code>/Data/apps/php/</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">wget http://docs.php.net/distributions/php-7.0.28.tar.gz</span><br><span class="line">tar xf php-7.0.28.tar.gz</span><br><span class="line">cd php-7.0.28</span><br><span class="line">./configure --with-libdir=lib64 --prefix=/Data/apps/php --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-zlib --with-png-dir --with-jpeg-dir --with-iconv --with-curl --with-mcrypt --with-openssl --with-xsl --enable-opcache --enable-inline-optimization --enable-fpm --enable-mbstring --enable-pcntl --enable-soap --enable-sockets --enable-bcmath --with-libxml --with-freetype-dir=/usr/include/freetype2/ --disable-phar</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 <h3 id="php-扩展"><a href="#php-扩展" class="headerlink" title="php 扩展"></a>php 扩展</h3><blockquote>

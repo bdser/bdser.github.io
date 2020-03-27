@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="运维自动化工具介绍 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。常见的自动化运维工具分类有以下几类：系统安装运维工具（OS Provisioning）：">
+  <meta name="description" content="运维自动化工具介绍 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。常见的自动化运维工具分类有以下几类：">
 <meta name="keywords" content="ansible">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ansible 基础模块介绍">
 <meta property="og:url" content="http://budongshu.gitee.io/2017/09/06/ansible_module基础模块介绍/index.html">
 <meta property="og:site_name" content="凡步">
-<meta property="og:description" content="运维自动化工具介绍 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。常见的自动化运维工具分类有以下几类：系统安装运维工具（OS Provisioning）：">
+<meta property="og:description" content="运维自动化工具介绍 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。常见的自动化运维工具分类有以下几类：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1542757-c4b2d6eede79a975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2020-03-27T06:15:58.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible 基础模块介绍">
-<meta name="twitter:description" content="运维自动化工具介绍 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。常见的自动化运维工具分类有以下几类：系统安装运维工具（OS Provisioning）：">
+<meta name="twitter:description" content="运维自动化工具介绍 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。常见的自动化运维工具分类有以下几类：">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1542757-c4b2d6eede79a975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   <link rel="canonical" href="http://budongshu.gitee.io/2017/09/06/ansible_module基础模块介绍/">
 
@@ -361,8 +361,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="运维自动化工具介绍"><a href="#运维自动化工具介绍" class="headerlink" title="运维自动化工具介绍"></a>运维自动化工具介绍</h2><p> 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。<br>常见的自动化运维工具分类有以下几类：</p><h3 id="系统安装运维工具（OS-Provisioning）："><a href="#系统安装运维工具（OS-Provisioning）：" class="headerlink" title="系统安装运维工具（OS Provisioning）："></a>系统安装运维工具（OS Provisioning）：</h3><a id="more"></a>
-<p> 常见的有：PXE,Cobbler，Red Hat Satelite(redhat)系统专用等</p>
+        <h2 id="运维自动化工具介绍"><a href="#运维自动化工具介绍" class="headerlink" title="运维自动化工具介绍"></a>运维自动化工具介绍</h2><p> 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。<br>常见的自动化运维工具分类有以下几类：</p><a id="more"></a>
+<h3 id="系统安装运维工具（OS-Provisioning）："><a href="#系统安装运维工具（OS-Provisioning）：" class="headerlink" title="系统安装运维工具（OS Provisioning）："></a>系统安装运维工具（OS Provisioning）：</h3><p> 常见的有：PXE,Cobbler，Red Hat Satelite(redhat)系统专用等</p>
 <h3 id="操作系统的配置运维工具-OS-Config-："><a href="#操作系统的配置运维工具-OS-Config-：" class="headerlink" title="操作系统的配置运维工具(OS Config)："></a>操作系统的配置运维工具(OS Config)：</h3><p> 常见的有：cfengine，puppet,saltsack,chef等 </p>
 <h3 id="应用程序部署工具-Application-Service-Orchestration"><a href="#应用程序部署工具-Application-Service-Orchestration" class="headerlink" title="应用程序部署工具(Application Service Orchestration):"></a>应用程序部署工具(Application Service Orchestration):</h3><p> 常见的有:Func,Fabric,ControITier,Capistrano等</p>
 <h3 id="根据工作模式不同上面的运维工具有分为以下两类："><a href="#根据工作模式不同上面的运维工具有分为以下两类：" class="headerlink" title="根据工作模式不同上面的运维工具有分为以下两类："></a>根据工作模式不同上面的运维工具有分为以下两类：</h3><ul>

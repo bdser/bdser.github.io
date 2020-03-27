@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="linux+tftp+kron 备份cisco交换机配置cisco设备自带kron命令+TFTP/FTP/HTTP 这种备份方式比较简单，但是有一定的局限性。因为kron命令在比较新的IOS版本上才有，有些说在12.3（4）以上才有我测试的版本是12.2(33)，也有这个命令但是kron命令本身并不能自动按照当前日期来命名备份文件所以还需要脚本来帮助wanc">
+  <meta name="description" content="linux+tftp+kron 备份cisco交换机配置cisco设备自带kron命令+TFTP/FTP/HTTP">
 <meta name="keywords" content="cisco">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cisco-kron+tftp备份配置">
 <meta property="og:url" content="http://budongshu.gitee.io/2016/09/02/cisco-kron-tftp备份配置/index.html">
 <meta property="og:site_name" content="凡步">
-<meta property="og:description" content="linux+tftp+kron 备份cisco交换机配置cisco设备自带kron命令+TFTP/FTP/HTTP 这种备份方式比较简单，但是有一定的局限性。因为kron命令在比较新的IOS版本上才有，有些说在12.3（4）以上才有我测试的版本是12.2(33)，也有这个命令但是kron命令本身并不能自动按照当前日期来命名备份文件所以还需要脚本来帮助wanc">
+<meta property="og:description" content="linux+tftp+kron 备份cisco交换机配置cisco设备自带kron命令+TFTP/FTP/HTTP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-27T06:18:13.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cisco-kron+tftp备份配置">
-<meta name="twitter:description" content="linux+tftp+kron 备份cisco交换机配置cisco设备自带kron命令+TFTP/FTP/HTTP 这种备份方式比较简单，但是有一定的局限性。因为kron命令在比较新的IOS版本上才有，有些说在12.3（4）以上才有我测试的版本是12.2(33)，也有这个命令但是kron命令本身并不能自动按照当前日期来命名备份文件所以还需要脚本来帮助wanc">
+<meta name="twitter:description" content="linux+tftp+kron 备份cisco交换机配置cisco设备自带kron命令+TFTP/FTP/HTTP">
   <link rel="canonical" href="http://budongshu.gitee.io/2016/09/02/cisco-kron-tftp备份配置/">
 
 
@@ -359,9 +359,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="linux-tftp-kron-备份cisco交换机配置"><a href="#linux-tftp-kron-备份cisco交换机配置" class="headerlink" title="linux+tftp+kron 备份cisco交换机配置"></a>linux+tftp+kron 备份cisco交换机配置</h1><h2 id="cisco设备自带kron命令-TFTP-FTP-HTTP"><a href="#cisco设备自带kron命令-TFTP-FTP-HTTP" class="headerlink" title="cisco设备自带kron命令+TFTP/FTP/HTTP"></a>cisco设备自带kron命令+TFTP/FTP/HTTP</h2><blockquote>
+        <h1 id="linux-tftp-kron-备份cisco交换机配置"><a href="#linux-tftp-kron-备份cisco交换机配置" class="headerlink" title="linux+tftp+kron 备份cisco交换机配置"></a>linux+tftp+kron 备份cisco交换机配置</h1><h2 id="cisco设备自带kron命令-TFTP-FTP-HTTP"><a href="#cisco设备自带kron命令-TFTP-FTP-HTTP" class="headerlink" title="cisco设备自带kron命令+TFTP/FTP/HTTP"></a>cisco设备自带kron命令+TFTP/FTP/HTTP</h2><a id="more"></a><blockquote>
 <p>这种备份方式比较简单，但是有一定的局限性。<br>因为kron命令在比较新的IOS版本上才有，有些说在12.3（4）以上才有<br>我测试的版本是12.2(33)，也有这个命令<br>但是kron命令本身并不能自动按照当前日期来命名备份文件<br>所以还需要脚本来帮助wanc </p>
-</blockquote><a id="more"></a>
+</blockquote>
 <h2 id="网络设备操作"><a href="#网络设备操作" class="headerlink" title="网络设备操作"></a>网络设备操作</h2><h3 id="kron命令详细可参考"><a href="#kron命令详细可参考" class="headerlink" title="kron命令详细可参考"></a><a href="http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/cns/configuration/xe-3s/asr1000/cns-xe-3s-asr1000-book/cns-cmd-sched.pdf" target="_blank" rel="noopener">kron命令详细可参考</a></h3><h3 id="使用kron命令配置自动备份任务计划"><a href="#使用kron命令配置自动备份任务计划" class="headerlink" title="使用kron命令配置自动备份任务计划"></a>使用kron命令配置自动备份任务计划</h3><ul>
 <li>kron policy-list backup #创建任务计划</li>
 <li>cli write #保存当前网络设备配置，以防止备份信息不完整</li>

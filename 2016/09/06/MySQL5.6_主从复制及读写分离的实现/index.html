@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="MySQL5.6主从复制及读写分离的实现 MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离** amoeba 简介Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba forMysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy">
+  <meta name="description" content="MySQL5.6主从复制及读写分离的实现 MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离**">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL5.6主从复制及读写分离的实现">
 <meta property="og:url" content="http://budongshu.gitee.io/2016/09/06/MySQL5.6_主从复制及读写分离的实现/index.html">
 <meta property="og:site_name" content="凡步">
-<meta property="og:description" content="MySQL5.6主从复制及读写分离的实现 MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离** amoeba 简介Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba forMysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy">
+<meta property="og:description" content="MySQL5.6主从复制及读写分离的实现 MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离**">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-03-27T06:15:10.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL5.6主从复制及读写分离的实现">
-<meta name="twitter:description" content="MySQL5.6主从复制及读写分离的实现 MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离** amoeba 简介Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba forMysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy">
+<meta name="twitter:description" content="MySQL5.6主从复制及读写分离的实现 MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离**">
   <link rel="canonical" href="http://budongshu.gitee.io/2016/09/06/MySQL5.6_主从复制及读写分离的实现/">
 
 
@@ -361,8 +361,8 @@
       
         <h2 id="MySQL5-6主从复制及读写分离的实现"><a href="#MySQL5-6主从复制及读写分离的实现" class="headerlink" title="MySQL5.6主从复制及读写分离的实现"></a>MySQL5.6主从复制及读写分离的实现</h2><blockquote>
 <p>MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离**</p>
-</blockquote><h2 id="amoeba-简介"><a href="#amoeba-简介" class="headerlink" title="amoeba 简介"></a>amoeba 简介</h2><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba forMysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p><a id="more"></a>
-
+</blockquote><a id="more"></a>
+<h2 id="amoeba-简介"><a href="#amoeba-简介" class="headerlink" title="amoeba 简介"></a>amoeba 简介</h2><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba forMysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
 <blockquote>
 <p>Amoeba优点：</p>
 </blockquote>

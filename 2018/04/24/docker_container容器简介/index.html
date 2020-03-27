@@ -56,20 +56,20 @@
   };
 </script>
 
-  <meta name="description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏   IaaS理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心">
+  <meta name="description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏">
 <meta name="keywords" content="docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker 入门简介">
 <meta property="og:url" content="http://budongshu.gitee.io/2018/04/24/docker_container容器简介/index.html">
 <meta property="og:site_name" content="凡步">
-<meta property="og:description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏   IaaS理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心">
+<meta property="og:description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fqo4sru5sbj30yw0g2tb3.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fqoqgpmalgj30ty0okdjn.jpg">
 <meta property="og:updated_time" content="2020-03-27T06:17:51.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker 入门简介">
-<meta name="twitter:description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏   IaaS理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心">
+<meta name="twitter:description" content="云计算平台 IaaS 虚拟机 存储 负载均衡 网络   PaaS 运行时环境 数据库 web服务器 开发工具   SaaS 客户关系管理 邮件 虚拟桌面 通信 游戏">
 <meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fqo4sru5sbj30yw0g2tb3.jpg">
   <link rel="canonical" href="http://budongshu.gitee.io/2018/04/24/docker_container容器简介/">
 
@@ -375,8 +375,8 @@
 <li>客户关系管理 邮件 虚拟桌面 通信 游戏</li>
 </ul>
 </li>
-</ul><h4 id="IaaS"><a href="#IaaS" class="headerlink" title="IaaS"></a>IaaS</h4><p>理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面<br>部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心</p><a id="more"></a>
-
+</ul><a id="more"></a>
+<h4 id="IaaS"><a href="#IaaS" class="headerlink" title="IaaS"></a>IaaS</h4><p>理解为基础设施运维人员服务，提供计算 存储 网络以及其他基础资源，云平台使用者可以在上面<br>部署和运行包括操作系统和应用程序在内的任意软件，无需再为基础设施的管理而分心</p>
 <h4 id="Paas"><a href="#Paas" class="headerlink" title="Paas"></a>Paas</h4><p>应用开发人员服务，提供支撑应用运行所需要的软件运行时环境，相关工具与服务，如数据库服务，<br>日志服务 监控服务等，让应用开发者可以专注于核心业务的开发</p>
 <h4 id="SaaS"><a href="#SaaS" class="headerlink" title="SaaS"></a>SaaS</h4><p>一般用户服务，提供了一套完整可用的软件系统，让一般用户无需关注技术细节，只需要通过浏览器<br>应用客户端等方式 就能使用部署在云上的应用服务</p>
 <h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><p>最新的容器技术引入了 OpenVZ Solaris Zones 以及 Linux容器（如lxc）使用这些新技术，<br>容器不再仅仅是一个单纯的运行环境，在自己的权限范围内，容器更像是一个完整的宿主机，对Docker<br>来说，它得益于现在Linux内核特性，如控制组(control group),命名空间(namespace) 技术，<br>容器和宿主机之间的隔离更加彻底，容器有独立的网络和存储栈，还拥有自己的资源管理能力，使得<br>同一台宿主机中的多个容器可以友好的地共存</p>

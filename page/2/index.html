@@ -350,7 +350,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h3><h4 id="https-网站打分"><a href="#https-网站打分" class="headerlink" title="https 网站打分"></a>https 网站打分</h4><p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com" target="_blank" rel="noopener">https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com</a></p><h4 id="openssl-漏洞查询"><a href="#openssl-漏洞查询" class="headerlink" title="openssl 漏洞查询"></a>openssl 漏洞查询</h4><p><a href="https://blog.myssl.com/https-security-best-practices-2/" target="_blank" rel="noopener">https://blog.myssl.com/https-security-best-practices-2/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mkdir /Data/apps</span><br><span class="line">cd /opt</span><br><span class="line">wget https://www.openssl.org/source/old/1.0.1/openssl-1.0.1t.tar.gz</span><br><span class="line">tar xf openssl-1.0.1t.tar.gz</span><br><span class="line">cd openssl-1.0.1t</span><br><span class="line">./config shared zlib --prefix=/Data/apps/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.old</span><br><span class="line">mv /usr/include/openssl /usr/include/openssl.old</span><br><span class="line">ln -s /Data/apps/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line">ln -s /Data/apps/openssl/include/openssl /usr/include/openssl </span><br><span class="line">ln -s /Data/apps/openssl/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span><br><span class="line">ln -s /Data/apps/openssl/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span><br></pre></td></tr></table></figure></p>
+          <h3 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h3><h4 id="https-网站打分"><a href="#https-网站打分" class="headerlink" title="https 网站打分"></a>https 网站打分</h4><p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com" target="_blank" rel="noopener">https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com</a></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -485,7 +485,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="运维自动化工具介绍"><a href="#运维自动化工具介绍" class="headerlink" title="运维自动化工具介绍"></a>运维自动化工具介绍</h2><p> 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。<br>常见的自动化运维工具分类有以下几类：</p><h3 id="系统安装运维工具（OS-Provisioning）："><a href="#系统安装运维工具（OS-Provisioning）：" class="headerlink" title="系统安装运维工具（OS Provisioning）："></a>系统安装运维工具（OS Provisioning）：</h3>
+          <h2 id="运维自动化工具介绍"><a href="#运维自动化工具介绍" class="headerlink" title="运维自动化工具介绍"></a>运维自动化工具介绍</h2><p> 在日常服务器维护中，从系统安装到程序部署再到发布应用，在大规模的生产环境中，如果需要手动的每台服务器进行安装配置将会给运维人员带来许多繁琐而又重复的工作。这就促使了在每个运维层次中出现了不同的自动化运维工具。<br>常见的自动化运维工具分类有以下几类：</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1182,7 +1182,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# cat /etc/redhat-release </span><br><span class="line">CentOS release 6.6 (Final)</span><br></pre></td></tr></table></figure><h2 id="yum源gitlab配置"><a href="#yum源gitlab配置" class="headerlink" title="yum源gitlab配置"></a>yum源gitlab配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# cat /etc/yum.repos.d/gitlab-ce.repo </span><br><span class="line">[gitlab-ce]</span><br><span class="line">name=gitlab-ce</span><br><span class="line">baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6</span><br><span class="line">repo_gpgcheck=0 </span><br><span class="line">gpgcheck=0 </span><br><span class="line">enabled=1 </span><br><span class="line">gpgkey=https://packages.gitlab.com/gpg.key</span><br></pre></td></tr></table></figure>
+          <h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@office-c6-4 ~]# cat /etc/redhat-release </span><br><span class="line">CentOS release 6.6 (Final)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1319,7 +1319,7 @@
       
           <h2 id="MySQL5-6主从复制及读写分离的实现"><a href="#MySQL5-6主从复制及读写分离的实现" class="headerlink" title="MySQL5.6主从复制及读写分离的实现"></a>MySQL5.6主从复制及读写分离的实现</h2><blockquote>
 <p>MySQL 5.6 基于GTID的主从复制及使用amoeba配置实现读写分离**</p>
-</blockquote><h2 id="amoeba-简介"><a href="#amoeba-简介" class="headerlink" title="amoeba 简介"></a>amoeba 简介</h2><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba forMysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
+</blockquote>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1448,7 +1448,7 @@
 <li>10.128.28.196  (nginx + apahe logstash收集日志(shipper))</li>
 <li>10.128.28.197  (redis + logstash 获取日志(indexer))</li>
 <li>10.128.28.198  (elasticsearch + kibana )</li>
-</ul><h2 id="系统版本"><a href="#系统版本" class="headerlink" title="系统版本"></a>系统版本</h2>
+</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
