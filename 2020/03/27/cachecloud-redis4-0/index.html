@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="凡步" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="12345cachecloud tag1.2mysql5.7maven3.6jdk1.7+redis4.0cachecloud12cd /root/git clone https://github.com/sohutv/cachecloud.gitmysql5.7.211234567891011121314# wget http://dev.mysql.com/get/mysql57-commun">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cachecloud_redis4.0">
+<meta property="og:url" content="http://budongshu.gitee.io/2020/03/27/cachecloud-redis4-0/index.html">
+<meta property="og:site_name" content="凡步">
+<meta property="og:description" content="12345cachecloud tag1.2mysql5.7maven3.6jdk1.7+redis4.0cachecloud12cd /root/git clone https://github.com/sohutv/cachecloud.gitmysql5.7.211234567891011121314# wget http://dev.mysql.com/get/mysql57-commun">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://budongshu.gitee.io/Users/budongshu/Library/Application%20Support/typora-user-images/image-20190313182537227.png">
+<meta property="og:image" content="http://budongshu.gitee.io/Users/budongshu/Library/Application%20Support/typora-user-images/image-20190313182959085.png">
+<meta property="og:updated_time" content="2020-03-27T07:56:58.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cachecloud_redis4.0">
+<meta name="twitter:description" content="12345cachecloud tag1.2mysql5.7maven3.6jdk1.7+redis4.0cachecloud12cd /root/git clone https://github.com/sohutv/cachecloud.gitmysql5.7.211234567891011121314# wget http://dev.mysql.com/get/mysql57-commun">
+<meta name="twitter:image" content="http://budongshu.gitee.io/Users/budongshu/Library/Application%20Support/typora-user-images/image-20190313182537227.png">
+  <link rel="canonical" href="http://budongshu.gitee.io/2020/03/27/cachecloud-redis4-0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>cachecloud_redis4.0 | 凡步</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">凡步</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个专注技术的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/bdstravel/bdstravel.github.io" class="github-corner" title="bdstravel GitHub" aria-label="bdstravel GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://budongshu.gitee.io/2020/03/27/cachecloud-redis4-0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="凡步">
+      <meta itemprop="description" content="Learning Linux Python Go 等知识点">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凡步">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">cachecloud_redis4.0
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-27 15:55:52 / 修改时间：15:56:58" itemprop="dateCreated datePublished" datetime="2020-03-27T15:55:52+08:00">2020-03-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cachecloud tag1.2</span><br><span class="line">mysql5.7</span><br><span class="line">maven3.6</span><br><span class="line">jdk1.7+</span><br><span class="line">redis4.0</span><br></pre></td></tr></table></figure><h3 id="cachecloud"><a href="#cachecloud" class="headerlink" title="cachecloud"></a>cachecloud</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /root/</span><br><span class="line">git clone https://github.com/sohutv/cachecloud.git</span><br></pre></td></tr></table></figure><h3 id="mysql5-7-21"><a href="#mysql5-7-21" class="headerlink" title="mysql5.7.21"></a>mysql5.7.21</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install mysql-community-server mysql-community-client</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /etc/init.d/mysqld start</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql&gt; ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'tester'</span>;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql&gt; create database cachecloud default character <span class="built_in">set</span> utf8 collate utf8_bin;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql&gt; use cachecloud;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql&gt; <span class="built_in">source</span> /root/cachecloud/script/cachecloud.sql;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql&gt; show tables;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> grant all privileges on *.* to <span class="string">'admin'</span>@<span class="string">'localhost'</span> identified by <span class="string">'admin'</span>;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> grant all privileges on *.* to <span class="string">'admin'</span>@<span class="string">'127.0.0.1'</span> identified by <span class="string">'admin'</span>;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> flush privileges;</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<h3 id="maven3-6"><a href="#maven3-6" class="headerlink" title="maven3.6"></a>maven3.6</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.shu.edu.cn/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz</span><br><span class="line">tar xf apache-maven-3.6.0-bin.tar.gz</span><br><span class="line">mv apache-maven-3.6.0 /Data/apps/maven</span><br><span class="line">ln -sv /Data/apps/maven/bin/mvn /sbin/mvn</span><br></pre></td></tr></table></figure>
+<h3 id="jdk1-8"><a href="#jdk1-8" class="headerlink" title="jdk1.8"></a>jdk1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/ &amp;&amp; wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz</span><br><span class="line">tar xf jdk-8u201-linux-x64.tar.gz</span><br><span class="line">#vim /etc/profile</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_111</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h3 id="cachecloud配置"><a href="#cachecloud配置" class="headerlink" title="cachecloud配置"></a>cachecloud配置</h3><h4 id="cachecloud配置文件properties修改"><a href="#cachecloud配置文件properties修改" class="headerlink" title="cachecloud配置文件properties修改"></a>cachecloud配置文件properties修改</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#用户生产使用</span><br><span class="line">/root/cachecloud/cachecloud-open-web/src/main/swap/online.properties</span><br><span class="line">#用户本地测试使用</span><br><span class="line">/root/cachecloud/cachecloud-open-web/src/main/swap/local.properties</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim /root/cachecloud/cachecloud-open-web/src/main/swap/online.properties</span><br><span class="line"></span><br><span class="line">cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cachecloud   #修改数据库的名字，注意空格</span><br><span class="line">cachecloud.db.user = admin								     #数据库访问的用户</span><br><span class="line">cachecloud.db.password = admin								 #数据库访问的密码</span><br><span class="line">cachecloud.maxPoolSize = 20</span><br><span class="line"></span><br><span class="line">isClustered = true</span><br><span class="line">isDebug = false</span><br><span class="line">spring-file=classpath:spring/spring-online.xml</span><br><span class="line">log_base=/opt/cachecloud-web/logs</span><br><span class="line">web.port=8585</span><br><span class="line">log.level=WARN</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vim /root/cachecloud/cachecloud-open-web/src/main/swap/local.properties</span><br><span class="line">cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cachecloud</span><br><span class="line">cachecloud.db.user = admin</span><br><span class="line">cachecloud.db.password = admin</span><br><span class="line">cachecloud.maxPoolSize = 20</span><br><span class="line"></span><br><span class="line">isClustered = true</span><br><span class="line">isDebug = true</span><br><span class="line">spring-file = classpath:spring/spring-local.xml</span><br><span class="line">log_base = /opt/cachecloud-web/logs</span><br><span class="line">web.port = 9999</span><br><span class="line">log.level = INFO</span><br></pre></td></tr></table></figure>
+<h4 id="cachecloud源码安装启动"><a href="#cachecloud源码安装启动" class="headerlink" title="cachecloud源码安装启动"></a>cachecloud源码安装启动</h4><h4 id="本地测试配置"><a href="#本地测试配置" class="headerlink" title="本地测试配置"></a>本地测试配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在/root/cachecloud/根目录下运行</span><br><span class="line">cd /root/cachecloud/</span><br><span class="line">mvn clean compile install -Plocal</span><br><span class="line">在cachecloud-open-web模块下运行</span><br><span class="line">cd /root/cachecloud/cachecloud-open-web</span><br><span class="line">mvn spring-boot:run</span><br></pre></td></tr></table></figure>
+<h4 id="生产环境配置"><a href="#生产环境配置" class="headerlink" title="生产环境配置"></a>生产环境配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在cachecloud根目录下运行</span><br><span class="line">cd /root/cachecloud/</span><br><span class="line">mvn clean compile install -Ponline</span><br><span class="line"># 新建cachecloud 安装服务目录</span><br><span class="line">mkdir -p /opt/cachecloud-web</span><br><span class="line"># 拷贝cachecloud 配置文件和cachecloud war包</span><br><span class="line">cp /root/cachecloud/cachecloud-open-web/src/main/resources/cachecloud-web.conf /opt/cachecloud-web/</span><br><span class="line">cp /root/cachecloud/cachecloud-open-web/target/cachecloud-open-web-1.0-SNAPSHOT.war /opt/cachecloud-web/</span><br></pre></td></tr></table></figure>
+<h4 id="启动使用系统服务启动"><a href="#启动使用系统服务启动" class="headerlink" title="启动使用系统服务启动"></a>启动使用系统服务启动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /opt/cachecloud-web/cachecloud-open-web-1.0-SNAPSHOT.war /etc/init.d/cachecloud-web</span><br><span class="line">/etc/init.d/cachecloud-web start</span><br></pre></td></tr></table></figure>
+<h4 id="启动脚本服务启动"><a href="#启动脚本服务启动" class="headerlink" title="启动脚本服务启动"></a>启动脚本服务启动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">启动方法2(使用脚本启动，大部分操作系统都正常)</span><br><span class="line">cp /root/cachecloud/script/start.sh /opt/cachecloud-web/</span><br><span class="line">cp /root/cachecloud/script/stop.sh  /opt/cachecloud-web/</span><br><span class="line">sh start.sh #如果机器内存不足，修改start.sh脚本，可以适当调小:-Xmx和-Xms(默认是4g)</span><br><span class="line">sh stop.sh</span><br></pre></td></tr></table></figure>
+<h3 id="访问cachecloud-界面"><a href="#访问cachecloud-界面" class="headerlink" title="访问cachecloud 界面"></a>访问cachecloud 界面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://10.1.21.169/8585</span><br><span class="line">用户名和密码都是 admin</span><br></pre></td></tr></table></figure>
+<h3 id="新建redis集群"><a href="#新建redis集群" class="headerlink" title="新建redis集群"></a>新建redis集群</h3><p>cachecloud 是使用ssh方式来管理主机机器的，所以我们这里通过用户名和密码的方式来管理机器</p>
+<p>下面的脚本会自动安装redis服务，并且建立用户和给用户创建密码(根据提示需要自己手动输入密码)</p>
+<p><img src="/Users/budongshu/Library/Application Support/typora-user-images/image-20190313182537227.png" alt="image-20190313182537227"></p>
+<h4 id="redis4-0"><a href="#redis4-0" class="headerlink" title="redis4.0"></a>redis4.0</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">cat /opt/cachecloud-init.sh  <span class="comment">### 这个脚本在cd /root/cachecloud/scripts/ 中</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">############################################################################</span></span><br><span class="line"><span class="comment"># @desc:</span></span><br><span class="line"><span class="comment">#	- 1. create user;</span></span><br><span class="line"><span class="comment">#	- 2. create default directories and authorize;</span></span><br><span class="line"><span class="comment">#	- 3. @usage: sh cachecloud-init.sh [username]</span></span><br><span class="line"><span class="comment"># @author: leifu</span></span><br><span class="line"><span class="comment"># @time:</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"></span><br><span class="line">set -o nounset</span><br><span class="line">set -o errexit</span><br><span class="line"></span><br><span class="line">readonly redisDir=<span class="string">"/opt/cachecloud/redis"</span></span><br><span class="line"><span class="comment">#readonly redisTarGz="redis-3.0.7.tar.gz"</span></span><br><span class="line">readonly redisTarGz=<span class="string">"redis-4.0.12.tar.gz"</span>    <span class="comment">###redis4.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># check if the user exists</span></span><br><span class="line">checkExist() &#123;</span><br><span class="line">	local num=`cat /etc/passwd | grep -w $<span class="number">1</span> | wc -l`</span><br><span class="line"></span><br><span class="line">	<span class="comment">#cat /etc/passwd | grep -q "$1"</span></span><br><span class="line">	<span class="keyword">if</span> [[ $num == <span class="number">1</span> ]]; then</span><br><span class="line">		echo <span class="string">"user $1 exists, overwrite user and *init all data*: [y/n]?"</span></span><br><span class="line">		read replace</span><br><span class="line">		<span class="keyword">if</span> [[ $&#123;replace&#125; == <span class="string">"y"</span> ]]; then</span><br><span class="line">			echo <span class="string">"delete existed user: $1."</span></span><br><span class="line">			userdel -r <span class="string">"$1"</span></span><br><span class="line">			createUser <span class="string">"$1"</span></span><br><span class="line">			init <span class="string">"$1"</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">		fi</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		createUser <span class="string">"$1"</span></span><br><span class="line">		init <span class="string">"$1"</span></span><br><span class="line">	fi</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># create the user</span></span><br><span class="line">createUser() &#123;</span><br><span class="line">	<span class="comment"># create a user</span></span><br><span class="line">	useradd -m -d /home/$<span class="number">1</span> -s /bin/bash $<span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># give the user a password</span></span><br><span class="line">	passwd $<span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># add the user to sudoers</span></span><br><span class="line">	<span class="comment">#	echo "$1	ALL=(ALL)   ALL" &gt;&gt; /etc/sudoers</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#  Maximum number of days between password change</span></span><br><span class="line">	chage -M <span class="number">9999</span> $<span class="number">1</span></span><br><span class="line">	echo <span class="string">"OK: create user: $1 done"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># create defautl dirs and authorize</span></span><br><span class="line">init() &#123;</span><br><span class="line">	<span class="comment"># create working dirs and a tmp dir</span></span><br><span class="line">	mkdir -p /opt/cachecloud/data</span><br><span class="line">	mkdir -p /opt/cachecloud/conf</span><br><span class="line">	mkdir -p /opt/cachecloud/logs</span><br><span class="line">	mkdir -p /opt/cachecloud/redis</span><br><span class="line">	mkdir -p /tmp/cachecloud</span><br><span class="line"></span><br><span class="line">	<span class="comment"># change owner</span></span><br><span class="line">	chown -R $<span class="number">1</span>:$<span class="number">1</span> /opt/cachecloud</span><br><span class="line">	chown -R $<span class="number">1</span>:$<span class="number">1</span> /tmp/cachecloud</span><br><span class="line">	echo <span class="string">"OK: init: $1 done"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># install redis</span></span><br><span class="line">installRedis() &#123;</span><br><span class="line">	<span class="comment">#which redis-server</span></span><br><span class="line">	<span class="comment">#if [[ $? == 0 ]]; then</span></span><br><span class="line">	<span class="comment">#	echo "WARN: redis is already installed, exit."</span></span><br><span class="line">	<span class="comment">#	return</span></span><br><span class="line">	<span class="comment">#fi</span></span><br><span class="line"></span><br><span class="line">	yum install -y gcc</span><br><span class="line">	mkdir -p $&#123;redisDir&#125; &amp;&amp; cd $&#123;redisDir&#125;</span><br><span class="line">	wget http://download.redis.io/releases/$&#123;redisTarGz&#125; &amp;&amp; mv $&#123;redisTarGz&#125; redis.tar.gz &amp;&amp; tar zxvf redis.tar.gz --strip-component=<span class="number">1</span></span><br><span class="line">	make &amp;&amp; make install</span><br><span class="line">	if [[ $? == 0 ]]; then</span><br><span class="line">		echo <span class="string">"OK: redis is installed, exit."</span></span><br><span class="line">		chown -R $<span class="number">1</span>:$<span class="number">1</span> $&#123;redisDir&#125;</span><br><span class="line">		export PATH=$PATH:$&#123;redisDir&#125;/src</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	fi</span><br><span class="line">	echo <span class="string">"ERROR: redis is NOT installed, exit."</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">username=$<span class="number">1</span></span><br><span class="line">checkExist <span class="string">"$&#123;username&#125;"</span></span><br><span class="line">installRedis <span class="string">"$&#123;username&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>执行安装redis初始化脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh /opt/cachecloud-init.sh redis #权限为redis 新建redis用户</span><br></pre></td></tr></table></figure>
+<h4 id="添加需要被管理的机器"><a href="#添加需要被管理的机器" class="headerlink" title="添加需要被管理的机器"></a>添加需要被管理的机器</h4><p><img src="/Users/budongshu/Library/Application Support/typora-user-images/image-20190313182959085.png" alt="image-20190313182959085"></p>
+
+    </div>
+
+    
+    
+    
+      
+
+        
+      
+        <div id="reward-container">
+  <div>都是给女盆友的</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/WechatIMG2.jpeg" alt="凡步 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/redis/" rel="tag"># redis</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/03/27/Centos6-6-install-kong-md/" rel="next" title="Centos6.6_install_kong.md">
+                  <i class="fa fa-chevron-left"></i> Centos6.6_install_kong.md
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/03/27/go-helloword-md/" rel="prev" title="go_helloword.md">
+                  go_helloword.md <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#cachecloud"><span class="nav-number">1.</span> <span class="nav-text">cachecloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql5-7-21"><span class="nav-number">2.</span> <span class="nav-text">mysql5.7.21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maven3-6"><span class="nav-number">3.</span> <span class="nav-text">maven3.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jdk1-8"><span class="nav-number">4.</span> <span class="nav-text">jdk1.8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cachecloud配置"><span class="nav-number">5.</span> <span class="nav-text">cachecloud配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cachecloud配置文件properties修改"><span class="nav-number">5.1.</span> <span class="nav-text">cachecloud配置文件properties修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cachecloud源码安装启动"><span class="nav-number">5.2.</span> <span class="nav-text">cachecloud源码安装启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地测试配置"><span class="nav-number">5.3.</span> <span class="nav-text">本地测试配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生产环境配置"><span class="nav-number">5.4.</span> <span class="nav-text">生产环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动使用系统服务启动"><span class="nav-number">5.5.</span> <span class="nav-text">启动使用系统服务启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动脚本服务启动"><span class="nav-number">5.6.</span> <span class="nav-text">启动脚本服务启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问cachecloud-界面"><span class="nav-number">6.</span> <span class="nav-text">访问cachecloud 界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建redis集群"><span class="nav-number">7.</span> <span class="nav-text">新建redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redis4-0"><span class="nav-number">7.1.</span> <span class="nav-text">redis4.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加需要被管理的机器"><span class="nav-number">7.2.</span> <span class="nav-text">添加需要被管理的机器</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="凡步">
+  <p class="site-author-name" itemprop="name">凡步</p>
+  <div class="site-description" itemprop="description">Learning Linux Python Go 等知识点</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/bdstravel" title="GitHub &rarr; https://github.com/bdstravel" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:bdstravel@126.com" title="E-Mail &rarr; mailto:bdstravel@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">凡步</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">135k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">2:02</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '8f62e94f804c8a93d972',
+      clientSecret: 'd1c1121be68dc5577b9c2504018cfba2f430c007',
+      repo: 'bdsgitalk',
+      owner: 'bdstravel',
+      admin: ['budongshu'],
+      id: 'e6b7a233440ead46a52320d185e99d9c',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

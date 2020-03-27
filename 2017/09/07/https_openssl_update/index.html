@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="https_openssl">
+  <meta name="description" content="升级opensslhttps 网站打分https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.comopenssl 漏洞查询https://blog.myssl.com/https-security-best-practices-2/1234567891011121314mkdir /Data/appscd /optwget https://ww">
 <meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="https_openssl_update">
 <meta property="og:url" content="http://budongshu.gitee.io/2017/09/07/https_openssl_update/index.html">
 <meta property="og:site_name" content="凡步">
-<meta property="og:description" content="https_openssl">
+<meta property="og:description" content="升级opensslhttps 网站打分https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.comopenssl 漏洞查询https://blog.myssl.com/https-security-best-practices-2/1234567891011121314mkdir /Data/appscd /optwget https://ww">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1542757-ef21bade0e915000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-09-27T04:06:57.967Z">
+<meta property="og:updated_time" content="2020-03-27T07:51:01.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="https_openssl_update">
-<meta name="twitter:description" content="https_openssl">
+<meta name="twitter:description" content="升级opensslhttps 网站打分https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.comopenssl 漏洞查询https://blog.myssl.com/https-security-best-practices-2/1234567891011121314mkdir /Data/appscd /optwget https://ww">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1542757-ef21bade0e915000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   <link rel="canonical" href="http://budongshu.gitee.io/2017/09/07/https_openssl_update/">
 
@@ -303,7 +303,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-27 12:06:57" itemprop="dateModified" datetime="2019-09-27T12:06:57+08:00">2019-09-27</time>
+                <time title="修改时间：2020-03-27 15:51:01" itemprop="dateModified" datetime="2020-03-27T15:51:01+08:00">2020-03-27</time>
               </span>
             
           
@@ -361,9 +361,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>https_openssl<br><a id="more"></a></p>
-<h3 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h3><h4 id="https-网站打分"><a href="#https-网站打分" class="headerlink" title="https 网站打分"></a>https 网站打分</h4><p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com" target="_blank" rel="noopener">https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com</a></p>
-<h4 id="openssl-漏洞查询"><a href="#openssl-漏洞查询" class="headerlink" title="openssl 漏洞查询"></a>openssl 漏洞查询</h4><p><a href="https://blog.myssl.com/https-security-best-practices-2/" target="_blank" rel="noopener">https://blog.myssl.com/https-security-best-practices-2/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mkdir /Data/apps</span><br><span class="line">cd /opt</span><br><span class="line">wget https://www.openssl.org/source/old/1.0.1/openssl-1.0.1t.tar.gz</span><br><span class="line">tar xf openssl-1.0.1t.tar.gz</span><br><span class="line">cd openssl-1.0.1t</span><br><span class="line">./config shared zlib --prefix=/Data/apps/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.old</span><br><span class="line">mv /usr/include/openssl /usr/include/openssl.old</span><br><span class="line">ln -s /Data/apps/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line">ln -s /Data/apps/openssl/include/openssl /usr/include/openssl </span><br><span class="line">ln -s /Data/apps/openssl/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span><br><span class="line">ln -s /Data/apps/openssl/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span><br></pre></td></tr></table></figure></p>
+        <h3 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h3><h4 id="https-网站打分"><a href="#https-网站打分" class="headerlink" title="https 网站打分"></a>https 网站打分</h4><p><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com" target="_blank" rel="noopener">https://www.ssllabs.com/ssltest/analyze.html?d=www.jd.com</a></p><h4 id="openssl-漏洞查询"><a href="#openssl-漏洞查询" class="headerlink" title="openssl 漏洞查询"></a>openssl 漏洞查询</h4><p><a href="https://blog.myssl.com/https-security-best-practices-2/" target="_blank" rel="noopener">https://blog.myssl.com/https-security-best-practices-2/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mkdir /Data/apps</span><br><span class="line">cd /opt</span><br><span class="line">wget https://www.openssl.org/source/old/1.0.1/openssl-1.0.1t.tar.gz</span><br><span class="line">tar xf openssl-1.0.1t.tar.gz</span><br><span class="line">cd openssl-1.0.1t</span><br><span class="line">./config shared zlib --prefix=/Data/apps/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">mv /usr/bin/openssl /usr/bin/openssl.old</span><br><span class="line">mv /usr/include/openssl /usr/include/openssl.old</span><br><span class="line">ln -s /Data/apps/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line">ln -s /Data/apps/openssl/include/openssl /usr/include/openssl </span><br><span class="line">ln -s /Data/apps/openssl/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span><br><span class="line">ln -s /Data/apps/openssl/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span><br></pre></td></tr></table></figure></p><a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure>
 <h3 id="重新编译nginx"><a href="#重新编译nginx" class="headerlink" title="重新编译nginx"></a>重新编译nginx</h3><h4 id="查看nginx-是否静态编译openssl"><a href="#查看nginx-是否静态编译openssl" class="headerlink" title="查看nginx 是否静态编译openssl"></a>查看nginx 是否静态编译openssl</h4><p>1 nginx -V<br> <img src="http://upload-images.jianshu.io/upload_images/1542757-ef21bade0e915000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>发现没有显示出来build openssl 的版本 则表明是静态编译的<br>2 ldd /Data/apps/nginx/sbin/nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@l-ng5.ops.prod.idc1 openssl]# ldd /Data/apps/nginx/sbin/nginx</span><br><span class="line">	linux-vdso.so.1 =&gt;  (0x00007ffd70ac8000)</span><br><span class="line">	libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x0000003014c00000)</span><br><span class="line">	libdl.so.2 =&gt; /lib64/libdl.so.2 (0x0000003014400000)</span><br><span class="line">	libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x0000003016400000)</span><br><span class="line">	libluajit-5.1.so.2 =&gt; /Data/apps/luajit/lib/libluajit-5.1.so.2 (0x00007f78bd38f000)</span><br><span class="line">	libm.so.6 =&gt; /lib64/libm.so.6 (0x0000003015400000)</span><br><span class="line">	libpcre.so.0 =&gt; /lib64/libpcre.so.0 (0x00007f78bd162000)</span><br><span class="line">	libz.so.1 =&gt; /lib64/libz.so.1 (0x0000003015800000)</span><br><span class="line">	libc.so.6 =&gt; /lib64/libc.so.6 (0x0000003014800000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x0000003014000000)</span><br><span class="line">	libfreebl3.so =&gt; /lib64/libfreebl3.so (0x0000003018800000)</span><br><span class="line">	libgcc_s.so.1 =&gt; /lib64/libgcc_s.so.1 (0x0000003c8ea00000)</span><br><span class="line"># 如果依赖库不含有Openssl，则表明是静态编译的Openssl的。</span><br></pre></td></tr></table></figure></p>
 <h4 id="修改下载解压后nginx源码目录里面代码"><a href="#修改下载解压后nginx源码目录里面代码" class="headerlink" title="修改下载解压后nginx源码目录里面代码"></a>修改下载解压后nginx源码目录里面代码</h4><p>进入目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/src/tengine-2.2.0/auto/lib/openssl </span><br><span class="line">cat conf</span><br></pre></td></tr></table></figure></p>
@@ -425,8 +424,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2017/09/06/ansible_module基础模块介绍/" rel="next" title="ansible 基础模块介绍">
-                  <i class="fa fa-chevron-left"></i> ansible 基础模块介绍
+                <a href="/2017/09/07/tengine_lua_install/" rel="next" title="tengine-lua_install">
+                  <i class="fa fa-chevron-left"></i> tengine-lua_install
                 </a>
               
             </div>
@@ -435,8 +434,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2017/09/07/tengine_lua_install/" rel="prev" title="tengine-lua_install">
-                  tengine-lua_install <i class="fa fa-chevron-right"></i>
+                <a href="/2017/09/07/ansible_playbook 介绍/" rel="prev" title="ansible-playbook 介绍">
+                  ansible-playbook 介绍 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -507,7 +506,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -520,7 +519,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -533,7 +532,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -595,14 +594,14 @@
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">128k</span>
+    <span title="站点总字数">135k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:56</span>
+    <span title="站点阅读时长">2:02</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
