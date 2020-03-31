@@ -305,8 +305,8 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/09/07/ansible_playbook 介绍/" itemprop="url">
-            <span itemprop="name">ansible-playbook 介绍</span>
+          <a class="post-title-link" href="/2017/09/07/https_openssl_update/" itemprop="url">
+            <span itemprop="name">https_openssl_update</span>
           </a>
         
       </h2>
@@ -334,8 +334,8 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/09/07/https_openssl_update/" itemprop="url">
-            <span itemprop="name">https_openssl_update</span>
+          <a class="post-title-link" href="/2017/09/07/ansible_playbook 介绍/" itemprop="url">
+            <span itemprop="name">ansible-playbook 介绍</span>
           </a>
         
       </h2>
@@ -795,6 +795,30 @@ window.addEventListener('pjax:success', () => {
 
   
 
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'jPCxCe1lRvXYrWkEtfIgNl4j-gzGzoHsz',
+    appKey: 'I5pELxKLhFIiCJbvSXzFn0Pb',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
     </div>
 </body>
